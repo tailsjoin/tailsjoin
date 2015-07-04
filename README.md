@@ -12,8 +12,8 @@ Be aware, the script will prompt for the administrator password several times th
 
 After installation you will have to add `torify` to every command as in:
 
-    torify wallet-tool.py <walletfile>
-    torify sendpayment.py -N 4 <amount> <address>
+    torify python wallet-tool.py <walletfile>
+    torify python sendpayment.py -N 4 <amount> <address>
 
 Please see: https://github.com/tailsjoin/tailsjoin/commit/0b42441277dfe77bccfefe6075cb688c0b603e4a
 
