@@ -25,7 +25,6 @@ echo -e "THEN RUN THE SCRIPT AGAIN."; read
 tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
 ( cd libsodium-1.0.3/ && ./configure )
 ( cd libsodium-1.0.3/ && make )
-make
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM.\n"
 ( cd libsodium-1.0.3/ && sudo make install )
 srm -drv libsodium-1.0.3/
