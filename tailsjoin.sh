@@ -6,7 +6,7 @@ echo "/home/amnesia/Persistent"
 echo -e "AND THEN RUN IT AGAIN.\n"
 # Update
 echo -e "\nENTER PASSWORD AT PROMPT TO UPDATE SOURCES.\n"
-sudo apt-get update
+#xsudo apt-get update
 # Install dependencies available with apt-get
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL THE FOLLOWING DEPENDENCIES:"
 echo -e "gcc, libc6-dev, make, python-dev, python-pip\n"
@@ -16,22 +16,19 @@ echo -e "\nPRESS ENTER TO FETCH LIBSODIUM SOURCE FROM:"
 echo -e "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz\n"; read
 wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
 gpg --recv-keys 0x62F25B592B6F76DA
-ver=$(gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz)
-good=$(echo "$ver" | grep -c "BAD")
-while [ "$good" != "0" ]; do
-  echo "\nSEEMS THE DOWNLOAD IS NOT VERIFYING. PRESS ENTER TO DELETE AND TRY AGAIN.\n"
-  read; srm -drv libsodium-1.0.3.tar.gz*
-  wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/  releases/libsodium-1.0.3.tar.gz.sig
-  ver=$(gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz)
-  good=$(echo "$ver" | grep -c "BAD")
-done
+gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+echo -e "\nPLEASE REVIEW SIGNATURE. IF THE SIG IS GOOD PRESS ENTER."
+echo "IF NOT PRESS CTRL-C AND DO:"
+echo "srm -drv libsodium*"
+echo -e "THEN RUN THE SCRIPT AGAIN."; read
 # Build libsodium, install, and delete tar files
-echo -e "\nLIBSODIUM DOWNLOADED AND VERIFIED. PRESS ENTER TO BEGIN BUILDING LIBSODIUM.\n"; read
 tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
-cd libsodium-1.0.3/ && ./configue && make
+( cd libsodium-1.0.3/ && ./configure )
+( cd libsodium-1.0.3/ && make )
+make
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM.\n"
-sudo make install
-cd ..; srm -drv libsodium-1.0.3/
+( cd libsodium-1.0.3/ && sudo make install )
+srm -drv libsodium-1.0.3/
 # Use pip to upgrade numpy
 echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
 sudo torify pip install numpy --upgrade
