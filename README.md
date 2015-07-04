@@ -10,10 +10,10 @@ You must start Tails with "More options" setting in the beginning (Persistence i
     
 Be aware, the script will prompt for the administrator password several times throughout.
 
-Joinmarket info:
+##Joinmarket info:
 
 IRC Channel:
-#joinmarket on irc.freenode.net
+joinmarket on irc.freenode.net
 https://webchat.freenode.net/?channels=%23joinmarket
 
 Bitcointalk thread:
