@@ -6,7 +6,7 @@ echo "/home/amnesia/Persistent"
 echo -e "AND THEN RUN IT AGAIN.\n"
 # Update
 echo -e "\nENTER PASSWORD AT PROMPT TO UPDATE SOURCES.\n"
-#xsudo apt-get update
+sudo apt-get update
 # Install dependencies available with apt-get
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL THE FOLLOWING DEPENDENCIES:"
 echo -e "gcc, libc6-dev, make, python-dev, python-pip\n"
