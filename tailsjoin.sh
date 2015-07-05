@@ -27,7 +27,8 @@ tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
 ( cd libsodium-1.0.3/ && make )
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM.\n"
 ( cd libsodium-1.0.3/ && sudo make install )
-srm -drv libsodium-1.0.3/
+echo -e "\nCLEANING UP TEMP FILES...\n"
+srm -dlrv libsodium-1.0.3/
 # Use pip to upgrade numpy
 echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
 sudo torify pip install numpy --upgrade
