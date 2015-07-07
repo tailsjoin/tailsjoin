@@ -1,5 +1,5 @@
 # tailsjoin
-## Script to install joinmarket and dependencies on Tails OS.
+## Script to install JoinMarket and dependencies on Tails OS.
 
 You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password.
 
@@ -10,17 +10,19 @@ You must start Tails with "More options" setting in the beginning (Persistence i
     
 Be aware, the script will prompt for the administrator password several times throughout.
 
-After installation you will have to add `torify` to every command as in:
+After installation you will have to add `torify` to every [command](https://github.com/tailsjoin/tailsjoin/commit/0b42441277dfe77bccfefe6075cb688c0b603e4a) that does blockchain lookups:
 
     torify python wallet-tool.py <walletfile>
     torify python sendpayment.py -N 4 <amount> <address>
 
-Please see: https://github.com/tailsjoin/tailsjoin/commit/0b42441277dfe77bccfefe6075cb688c0b603e4a
+####[Send payment guide in wiki.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
 
-##Joinmarket info:
+---
+
+##JoinMarket info:
 
 IRC Channel:
-joinmarket on irc.freenode.net
+joinMarket on irc.freenode.net
 https://webchat.freenode.net/?channels=%23joinmarket
 
 Bitcointalk thread:
