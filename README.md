@@ -22,7 +22,7 @@ After installation you will have to add `torify` to every [command](https://gith
 ##JoinMarket info:
 
 IRC Channel:
-joinMarket on irc.freenode.net
+JoinMarket on irc.freenode.net
 https://webchat.freenode.net/?channels=%23joinmarket
 
 Bitcointalk thread:
