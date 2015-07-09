@@ -6,7 +6,7 @@ You must start Tails with "More options" setting in the beginning (Persistence i
     cd /home/amnesia/Persistent (optional)
     git clone https://github.com/tailsjoin/tailsjoin
     cd tailsjoin
-    gpg --verify tailsjoin.sh.asc tailsjoin.sh (check sig)
+    gpg --verify tailsjoin.sh.asc tailsjoin.sh (KeyID: [0x63DA9130FD4615DB](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key))
     ./tailsjoin.sh
     
 Be aware, the script will prompt for the administrator password several times throughout.
