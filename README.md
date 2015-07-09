@@ -3,10 +3,12 @@
 
 You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password.
 
+The script is signed with my gpg key: [0x63DA9130FD4615DB](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key)
+
     cd /home/amnesia/Persistent (optional)
     git clone https://github.com/tailsjoin/tailsjoin
     cd tailsjoin
-    gpg --verify tailsjoin.sh.asc tailsjoin.sh (KeyID: [0x63DA9130FD4615DB](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key))
+    gpg --verify tailsjoin.sh.asc tailsjoin.sh
     ./tailsjoin.sh
     
 Be aware, the script will prompt for the administrator password several times throughout.
