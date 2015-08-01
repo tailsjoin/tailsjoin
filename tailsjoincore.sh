@@ -45,14 +45,48 @@ if [ -e "bitcoin.conf" ]; then
     exit 0
   fi
 fi
-echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nproxyrandomize=1\ndatadir=" > bitcoin-0.11.0/bin/bitcoin.conf
-clear
-echo -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
+echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nproxyrandomize=1\ndatadir=\nserver=1\ntxindex=1\nwalletnotify=curl -sI --connect-timeout 1 http://localhost:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://localhost:62062/alertnotify?%s" > bitcoin-0.11.0/bin/bitcoin.conf
+clearecho -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
 echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.0/bin/bitcoin.conf\n\n"
-echo -e "PRESS ENTER TO ALLOW RPC CALLS BY ADJUSTING IPTABLES USING THIS COMMAND:\n"
+echo -e "\n\nPRESS ENTER TO ALLOW RPC CALLS BY ADJUSTING IPTABLES USING THIS COMMAND:\n"
 read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT"
 sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT
+echo -e "\n\nPRESS ENTER TO ALLOW JOINMARKET TO COMMUNICATE WITH BITCOIN USING THIS COMMAND:\n"
+read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 62062 -m owner --uid-owner amnesia -j ACCEPT"
+sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT
 clear
+echo -e "\nNOW WE WILL INSTALL JOINMARKET AND ITS DEPENDENCIES."
+echo -e "\nENTER PASSWORD AT PROMPT TO UPDATE SOURCES.\n"
+sudo apt-get update
+echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL THE FOLLOWING DEPENDENCIES:"
+echo -e "gcc, libc6-dev, make, python-dev, python-pip\n"
+sudo apt-get install -y gcc libc6-dev make python-dev python-pip
+echo -e "\nPRESS ENTER TO FETCH LIBSODIUM SOURCE FROM:"
+echo -e "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz\n"; read
+wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
+gpg --recv-keys 0x62F25B592B6F76DA
+gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+echo -e "\nPLEASE REVIEW SIGNATURE. IF THE SIG IS GOOD PRESS ENTER."
+echo "IF NOT PRESS CTRL-C AND DO:"
+echo "srm -drv libsodium*"
+echo -e 'THEN RUN THE "tailsjoin.sh" SCRIPT, NOT THIS SCRIPT.'; read
+tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
+( cd libsodium-1.0.3/ && ./configure )
+( cd libsodium-1.0.3/ && make )
+echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM.\n"
+( cd libsodium-1.0.3/ && sudo make install )
+echo -e "\nCLEANING UP TEMP FILES...\n"
+srm -dlrv libsodium-1.0.3/
+echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
+sudo torify pip install numpy --upgrade
+echo -e "\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:"
+echo -e "https://github.com/chris-belcher/joinmarket\n"; read
+git clone https://github.com/chris-belcher/joinmarket ../joinmarket
+echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#for clearnet\n#host = irc.cyberguerrilla.info\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = false\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#host = 6dvj6v5imhny3anf.onion\nhost = a2jutl5hpza43yog.onion\n#socks5 = true\nport = 6697\n" > ../joinmarket/joinmarket.cfg
+echo -e "\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
+echo "PLEASE GO HERE TO GET INFO ON HOW TO OPERATE:"
+echo "https://github.com/chris-belcher/joinmarket/wiki"
+echo -e "PRESS ENTER TO EXIT."; read; exit 0
 echo -e "\n\nSCRIPT FINISHED.\n"
 echo "YOU CAN RUN BITCOIN BY ENTERING THE FOLDER: bitcoin-0.11.0/bin"
 echo "AND DOING: ./bitcoind -conf=/path/to/bitcoin-0.11.0/bin/bitcoin.conf"
