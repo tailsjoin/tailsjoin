@@ -82,7 +82,7 @@ echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
 sudo torify pip install numpy --upgrade
 echo -e "\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:"
 echo -e "https://github.com/chris-belcher/joinmarket\n"; read
-git clone https://github.com/chris-belcher/joinmarket ../joinmarket
+git clone https://github.com/chris-belcher/joinmarket joinmarket
 echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#for clearnet\n#host = irc.cyberguerrilla.info\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = false\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#host = 6dvj6v5imhny3anf.onion\nhost = a2jutl5hpza43yog.onion\n#socks5 = true\nport = 6697\n" > ../joinmarket/joinmarket.cfg
 echo -e "\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
 echo "PLEASE GO HERE TO GET INFO ON HOW TO OPERATE:"
