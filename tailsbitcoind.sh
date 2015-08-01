@@ -18,6 +18,7 @@ gpg --verify SHA256SUMS.asc
 echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
 read -p "GOOD SIG? (y/n) " x
 if [[ "$x" = "n" || "$x" = "N" ]]; then
+  clear
   echo -e "\n\nDELETE FILES USING: srm -drv SHA256SUMS.asc bitcoin-0.11.0-linux32.tar.gz"
   read -p "PRESS ENTER TO EXIT THE SCRIPT. RUN AGAIN AFTER DELETION OF FILES."
   exit 0
@@ -27,6 +28,7 @@ sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
 echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | shasum -c
 echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
 if [[ "$x" = "n" || "$x" = "N" ]]; then
+  clear
   echo -e "\n\nDELETE FILES USING: srm -drv SHA256SUMS.asc bitcoin-0.11.0-linux32.tar.gz"
   read -p "PRESS ENTER TO EXIT THE SCRIPT. RUN AGAIN AFTER DELETION OF FILES."
   exit 0
@@ -36,7 +38,8 @@ tar -xvf bitcoin-0.11.0-linux32.tar.gz
 srm -dlrv bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
 echo ""; read -p "PRESS ENTER TO PUT SOME SANE DEFAULTS INTO A BITCOIN.CONF FOR YOU."
 if [ -e "bitcoin.conf" ]; then
-  read -p 'FILE "bitcoin.conf" EXISTS. OVERWRITE? (y/n) ' ow
+  clear
+  echo ""; read -p 'FILE "bitcoin.conf" EXISTS. OVERWRITE? (y/n) ' ow
   if  [[ "$ow" = "n" || "$ow" = "N" ]]; then
     echo ""; read -p "PRESS ENTER TO EXIT SCRIPT"
     exit 0
