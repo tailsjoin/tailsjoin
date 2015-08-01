@@ -46,7 +46,8 @@ if [ -e "bitcoin.conf" ]; then
   fi
 fi
 echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nproxyrandomize=1\ndatadir=\nserver=1\ntxindex=1\nwalletnotify=curl -sI --connect-timeout 1 http://localhost:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://localhost:62062/alertnotify?%s" > bitcoin-0.11.0/bin/bitcoin.conf
-clearecho -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
+clear
+echo -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
 echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.0/bin/bitcoin.conf\n\n"
 echo -e "\n\nPRESS ENTER TO ALLOW RPC CALLS BY ADJUSTING IPTABLES USING THIS COMMAND:\n"
 read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT"
