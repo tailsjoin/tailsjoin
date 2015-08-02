@@ -18,7 +18,7 @@ The script is signed with my gpg key: [0x1B9184DF9E117718](https://github.com/ta
     cd /home/amnesia/Persistent (optional)
     git clone https://github.com/tailsjoin/tailsjoin
     cd tailsjoin
-    gpg --recv-keys 0x1B9184DF9E117718
+    gpg --recv-keys 44C5398EA821BB41A0C070521B9184DF9E117718
     gpg --verify tailsjoin.sh.asc tailsjoin.sh
     ./tailsjoin.sh
     
