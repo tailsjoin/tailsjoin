@@ -43,10 +43,10 @@ Bitcointalk thread:
 https://bitcointalk.org/index.php?topic=919116.msg10096563
 
 Subreddit:
-www.reddit.com/r/joinmarket
+https://reddit.com/r/joinmarket
 
 Twitter:
-www.twitter.com/joinmarket
+https://twitter.com/joinmarket
 
 Donation address:
 1AZgQZWYRteh6UyF87hwuvyWj73NvWKpL
