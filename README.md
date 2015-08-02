@@ -24,7 +24,7 @@ The script is signed with my gpg key: [0x1B9184DF9E117718](https://github.com/ta
     
 Be aware, the script will prompt for the administrator password several times throughout.
 
-After installation you will have to add `torify` to every [command](https://github.com/tailsjoin/tailsjoin/commit/0b42441277dfe77bccfefe6075cb688c0b603e4a) that does blockchain lookups:
+After installation you will have to add `torify` to every [command](https://github.com/tailsjoin/tailsjoin/commit/0b42441277dfe77bccfefe6075cb688c0b603e4a) that does blockchain lookups because the minimal setup uses blockr.io (Coinbase):
 
     torify python wallet-tool.py <wallet_file>
     torify python sendpayment.py -P -N 4 <amount> <destination_address>
