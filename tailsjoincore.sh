@@ -50,11 +50,11 @@ clear
 echo -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
 echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.0/bin/bitcoin.conf\n\n"
 echo -e "\n\nPRESS ENTER TO ALLOW RPC CALLS BY ADJUSTING IPTABLES USING THIS COMMAND:\n"
-read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT"
-sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT
+read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -j ACCEPT"
+sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -j ACCEPT
 echo -e "\n\nPRESS ENTER TO ALLOW JOINMARKET TO COMMUNICATE WITH BITCOIN USING THIS COMMAND:\n"
-read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 62062 -m owner --uid-owner amnesia -j ACCEPT"
-sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 8332 -m owner --uid-owner amnesia -j ACCEPT
+read -p "sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 62062 -j ACCEPT"
+sudo iptables -I OUTPUT -p tcp -d 127.0.0.1 --dport 62062 -j ACCEPT
 clear
 echo -e "\nNOW WE WILL INSTALL JOINMARKET AND ITS DEPENDENCIES."
 echo -e "\nENTER PASSWORD AT PROMPT TO UPDATE SOURCES.\n"
