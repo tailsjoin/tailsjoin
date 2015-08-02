@@ -106,6 +106,13 @@ echo "IN ORDER TO FIX THIS ISSUE WE WILL CREATE A RANDOM NICK LOCALLY USING THIS
 echo -e "\nhttps://github.com/chris-belcher/joinmarket/pull/121\n"
 read -p "PRESS ENTER TO GET THE CHANGES AND MODIFY THE lib/irc.py FILE."
 wget https://raw.githubusercontent.com/CohibAA/joinmarket-dev-cohibaa/patch-5/lib/irc.py -O joinmarket/lib/irc.py
+clear
+echo -e "\n\nJOINMARKETS lib/irc.py ONLY HAS A 1 SECOND WAIT TIME BETWEEN SENDING SIGS."
+echo "THIS CAUSES THE IRC TO KICK YOU FOR FLOODING IF YOU SEND WITH MORE THAT 5 MAKERS."
+read -p "WOULD YOU LIKE TO MODIFY THIS WAIT TIME ON LINE 98 OF lib/irc.py TO 5 SECONDS? (y/n) " m
+if [[ "$m" = "y" || "$m" = "Y" ]]; then
+  sed -i '98s|1|5|' joinmarket/lib/irc.py
+fi
 echo "PLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE FROM THE CREATOR:"
 echo "https://github.com/chris-belcher/joinmarket/wiki"
 echo -e "\n\nSCRIPT FINISHED.\n"
