@@ -1,7 +1,17 @@
 # tailsjoin
-## Script to install JoinMarket and dependencies on Tails OS.
+## Scripts to install JoinMarket, Bitcoin v.11, and dependencies on Tails OS.
 
-You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password.
+### Options for Tails.
+
+1. Run on a minimal system without enough disk space to run bitcoin core.
+
+2. Run on either a system with enough disk space to hold an indexed blockchain, or a minimal system with the enough external storage to store the blockchain (60GB~)
+
+---
+
+### Steps for a system with minimal disk space.
+
+You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password no matter which script you run.
 
 The script is signed with my gpg key: [0x1B9184DF9E117718](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key)
 
@@ -19,11 +29,11 @@ After installation you will have to add `torify` to every [command](https://gith
     torify python wallet-tool.py <wallet_file>
     torify python sendpayment.py -P -N 4 <amount> <destination_address>
 
-####[Send payment guide in wiki.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
-
+####[Simple send payment guide in wiki.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
+####[Guide for using Bitcoin core for added privacy not perfected yet.](https://github.com/tailsjoin/tailsjoin/wiki/tails) 
 ---
 
-##JoinMarket info:
+##JoinMarket Project Information:
 
 IRC Channel:
 JoinMarket on irc.freenode.net
