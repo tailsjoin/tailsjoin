@@ -18,9 +18,16 @@ wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz htt
 gpg --recv-keys 0x62F25B592B6F76DA
 gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
 echo -e "\nPLEASE REVIEW SIGNATURE. IF THE SIG IS GOOD PRESS ENTER."
-echo "IF NOT PRESS CTRL-C AND DO:"
-echo "srm -drv libsodium*"
-echo -e "THEN RUN THE SCRIPT AGAIN."; read
+read -p "GOOD SIG? (y/n) " x
+while [[ "$x" = "n" || "$x" = "N" ]]; do
+  clear
+  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+  srm -drv libsodium*
+  wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
+  gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+  echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
+  read -p "GOOD SIG? (y/n) " x
+done
 # Build libsodium, install, and delete tar files
 tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
 ( cd libsodium-1.0.3/ && ./configure )
@@ -28,7 +35,7 @@ tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM.\n"
 ( cd libsodium-1.0.3/ && sudo make install )
 echo -e "\nCLEANING UP TEMP FILES...\n"
-srm -dlrv libsodium-1.0.3/
+rm -rf libsodium-1.0.3/
 # Use pip to upgrade numpy
 echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
 sudo torify pip install numpy --upgrade
