@@ -1,8 +1,15 @@
 #!/bin/bash
 set -e
-#This script will clone and install pycoin (https://github.com/richardkiss/pycoin), create, sign, and push a transaction in order to clean up your JoinMarket wallet. This is specifically for use with bitcoin core and the Tails live operating system (https://tails.boum.org), and will not work without a local bitcoin client. I may make one that uses a web service too. When either a tumble session fails, or when acting as a maker one often ends up with random funds spread accross random depths. This is hopefully a simple way to reallocate or move these funds. Nothing is ever pushed to the network until you give the "OK" at the very end of the script. So there is no worry in testing, quiting, and testing again.
+# This script will clone and install pycoin (https://github.com/richardkiss/pycoin), create, sign, and push a 
+# transaction in order to clean up your JoinMarket wallet. This is specifically for use with bitcoin core and the 
+# Tails live operating system (https://tails.boum.org), and will not work without a local bitcoin client. I may make
+# one that uses a web service too. When either a tumble session fails, or when acting as a maker one often ends up
+# with random funds spread accross random depths. This is hopefully a simple way to reallocate or move these funds.
+# nothing is ever pushed to the network until you give the "OK" at the very end of the script. So there is no worry
+# in testing, quiting, and testing again.
 #
-# Use at your own risk, and be aware of your own skill level. Keep a calculator handy as the script does not do math for you.
+# Use at your own risk, and be aware of your own skill level. Keep a calculator handy as the script does not do math
+# for you.
 #
 clear
 if [[ ! -e pycoin/pycoin/scripts/tx.py ]]; then
