@@ -1,6 +1,6 @@
 #!/bin/bash
 set -e
-echo "YOU ARE CURRENTLY IN THE FILE $(echo "$PWD")"
+echo "YOU ARE CURRENTLY IN THE FOLDER $(echo "$PWD")"
 read -p "IS THIS WHERE YOU WANT TO DOWNLOAD BITCOIN? (y/n) " x
 if [[ "$x" = "n" || "$x" = "N" ]]; then
   echo -e "\n\nPLEASE MOVE THIS SCRIPT TO THE FOLDER WHERE"
