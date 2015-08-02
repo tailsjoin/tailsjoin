@@ -17,7 +17,7 @@ echo -e "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz
 wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
 gpg --recv-keys 0x62F25B592B6F76DA
 gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
-echo -e "\nPLEASE REVIEW SIGNATURE. IF THE SIG IS GOOD PRESS ENTER."
+echo -e "\nPLEASE REVIEW SIGNATURE."
 read -p "GOOD SIG? (y/n) " x
 while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
