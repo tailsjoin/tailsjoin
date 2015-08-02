@@ -67,33 +67,37 @@ echo -e "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz
 wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
 gpg --recv-keys 0x62F25B592B6F76DA
 gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
-echo -e "\nPLEASE REVIEW SIGNATURE. IF THE SIG IS GOOD PRESS ENTER."
-echo "IF NOT PRESS CTRL-C AND DO:"
-echo "srm -drv libsodium*"
-echo -e 'THEN RUN THE "tailsjoin.sh" SCRIPT, NOT THIS SCRIPT.'; read
+echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
+read -p "GOOD SIG? (y/n) " x
+if [[ "$x" = "n" || "$x" = "N" ]]; then
+  clear
+  echo -e "\n\nDELETE FILES USING: srm -drv libsodium*"
+  echo -e 'THEN RUN THE "tailsjoin.sh" SCRIPT, NOT THIS SCRIPT.'
+  read -p "PRESS ENTER TO EXIT SCRIPT."
+  exit 0
+fi
 tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
 ( cd libsodium-1.0.3/ && ./configure )
 ( cd libsodium-1.0.3/ && make )
-echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM.\n"
+echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM AND DELETE USELESS FILES.\n"
 ( cd libsodium-1.0.3/ && sudo make install )
-echo -e "\nCLEANING UP TEMP FILES...\n"
-srm -dlrv libsodium-1.0.3/
+rm -rf libsodium-1.0.3/
 echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
 sudo torify pip install numpy --upgrade
 echo -e "\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:"
 echo -e "https://github.com/chris-belcher/joinmarket\n"; read
 git clone https://github.com/chris-belcher/joinmarket joinmarket
 echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#for clearnet\n#host = irc.cyberguerrilla.info\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = true\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#host = 6dvj6v5imhny3anf.onion\nhost = a2jutl5hpza43yog.onion\nport = 6697\n" > joinmarket/joinmarket.cfg
-echo -e "\n\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
+echo -e "\n\nJOINMARKET CLONED, AND CONFIG SET TO USE TOR AND BITCOIN RPC."
+read -p "PRESS ENTER FOR SOME FINAL CONFIGURATIONS."
 clear
 echo -e "\n\nJOINMARKETS lib/irc.py FILE DOES AN UNPROXIED HTTP LOOKUP TO WIKIPEDIA"
-echo "IN ORDER TO GET A RANDOM NICKNAME FOR THE IRC. THIS IS NOT POSSIBLE, OR SAFE,"
-echo -e "ON TAILS.\n"
+echo "TO GET A RANDOM NICKNAME FOR THE IRC. THIS IS NOT POSSIBLE, OR SAFE, ON TAILS.\n"
 echo "IN ORDER TO FIX THIS ISSUE WE WILL CREATE A RANDOM NICK LOCALLY USING THIS PR:"
 echo -e "\nhttps://github.com/chris-belcher/joinmarket/pull/121\n"
 read -p "PRESS ENTER TO GET THE CHANGES AND MODIFY THE lib/irc.py FILE."
 wget https://raw.githubusercontent.com/CohibAA/joinmarket-dev-cohibaa/patch-5/lib/irc.py -O joinmarket/lib/irc.py
-echo "PLEASE GO HERE TO GET INFO ON HOW TO OPERATE:"
+echo "PLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE FROM THE CREATOR:"
 echo "https://github.com/chris-belcher/joinmarket/wiki"
 echo -e "\n\nSCRIPT FINISHED.\n"
 echo "YOU CAN RUN BITCOIN BY ENTERING THE FOLDER: $PWD/bitcoin-0.11.0/bin"
