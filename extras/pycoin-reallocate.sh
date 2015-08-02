@@ -134,7 +134,7 @@ echo -e "tx "$utxos" "$sends"\n"
 read -p "PRESS ENTER TO CREATE THE TRANSACTION. ENTER ADMIN PASS AT PROMPT."
 mtx=$(sudo tx $(echo -n ""$utxos" "$sends""))
 echo -e "\n\n"
-echo -e "$mtx"
+echo "$mtx"
 }
 mktx
 echo -e "\n\nREVIEW THE INFORMATION IN THE TRANSACTION.\n"
@@ -148,7 +148,7 @@ clear
 mtxh=$(echo "$mtx" | tail -n 1)
 stx=$(sudo tx -f /tmp/priv $(echo -n ""$mtxh""))
 echo -e "\n\n"
-echo -e "$stx"
+echo "$stx"
 echo -e "\n\nREVIEW THE SIGNED TRANSACTION.\n"
 read -p "PUSH SIGNED TX NOW? (y/n)" ptx
 if [[ "$ptx" = "n" || "$ptx" = "N" ]]; then
