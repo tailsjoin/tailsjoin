@@ -17,22 +17,29 @@ gpg --recv-keys 01EA5486DE18A882D4C2684590C8019E36C2E964
 gpg --verify SHA256SUMS.asc
 echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
 read -p "GOOD SIG? (y/n) " x
-if [[ "$x" = "n" || "$x" = "N" ]]; then
+while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
-  echo -e "\n\nDELETE FILES USING: srm -drv SHA256SUMS.asc bitcoin-0.11.0-linux32.tar.gz"
-  read -p "PRESS ENTER TO EXIT THE SCRIPT. RUN AGAIN AFTER DELETION OF FILES."
-  exit 0
-fi
+  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+  srm -drv SHA256SUMS.asc
+  wget https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+  gpg --verify SHA256SUMS.asc
+  echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
+  read -p "GOOD SIG? (y/n) " x
+done
 echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
 sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
 echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | shasum -c
 echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
-if [[ "$x" = "n" || "$x" = "N" ]]; then
+while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
-  echo -e "\n\nDELETE FILES USING: srm -drv SHA256SUMS.asc bitcoin-0.11.0-linux32.tar.gz"
-  read -p "PRESS ENTER TO EXIT THE SCRIPT. RUN AGAIN AFTER DELETION OF FILES."
-  exit 0
-fi
+  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+  srm -drv bitcoin-0.11.0-linux32.tar.gz
+  wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz
+  echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
+  sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
+  echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | shasum -c
+  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+done
 echo ""; read -p "PRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."
 tar -xvf bitcoin-0.11.0-linux32.tar.gz
 srm -dlrv bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
@@ -69,13 +76,15 @@ gpg --recv-keys 0x62F25B592B6F76DA
 gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
 echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
 read -p "GOOD SIG? (y/n) " x
-if [[ "$x" = "n" || "$x" = "N" ]]; then
+while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
-  echo -e "\n\nDELETE FILES USING: srm -drv libsodium*"
-  echo -e 'THEN RUN THE "tailsjoin.sh" SCRIPT, NOT THIS SCRIPT.'
-  read -p "PRESS ENTER TO EXIT SCRIPT."
-  exit 0
-fi
+  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+  srm -drv libsodium*
+  wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
+  gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+  echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD."
+  read -p "GOOD SIG? (y/n) " x
+done
 tar xf libsodium-1.0.3.tar.gz; srm -drv libsodium-1.0.3.tar.gz*
 ( cd libsodium-1.0.3/ && ./configure )
 ( cd libsodium-1.0.3/ && make )
