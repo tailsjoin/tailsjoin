@@ -14,16 +14,17 @@ set -e
 clear
 if [[ ! -e pycoin/pycoin/scripts/tx.py ]]; then
   echo -e "\n\nIT SEEMS YOU DON'T HAVE PYCOIN.\n"
-  read -p "DO YOU NEED TO GET/BUILD PYCOIN? (y/n) " ip
+  read -p "DO YOU NEED TO CLONE AND INSTALL PYCOIN? (y/n) " ip
   if [[ "$ip" = "y" || "$ip" = "Y" ]]; then
     echo -e "\n\nPRESS ENTER TO GET PYCOIN FROM:"
     read -p "https://github.com/richardkiss/pycoin"
     git clone https://github.com/richardkiss/pycoin
+    echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL PYCOIN."
     ( cd pycoin/ && sudo python setup.py install )
   fi
 fi
 clear
-echo -e "\n\nPLEASE ENTER THE PATH TO BITCOIN CORE BIN."
+echo -e "\n\nENTER THE PATH TO BITCOIN CORE BIN."
 echo "EXAMPLE: /home/amnesia/Persistent/bitcoin-0.11.0/bin/"
 read btc
 h=$(ls "$btc" | grep -c bitcoin-cli)
@@ -35,12 +36,12 @@ until [[ "$h" = "1" ]]; do
   h=$(ls "$btc" | grep -c bitcoin-cli)
 done
 clear
-echo -e "\n\nPLEASE ENTER THE PATH TO YOUR BITCOIN CONFIG FILE."
+echo -e "\n\nENTER THE PATH TO YOUR BITCOIN CONFIG FILE."
 echo "EXAMPLE: /home/amnesia/Persistent/bitcoin-0.11.0/bin/bitcoin.conf"
 read conf
 while [[ ! -e "$conf" ]]; do
   echo "\n\nFILE DOES NOT EXIST!"
-  echo -e "\n\nPLEASE ENTER THE PATH TO YOUR BITCOIN CONFIG FILE."
+  echo -e "\n\nENTER THE PATH TO YOUR BITCOIN CONFIG FILE."
   echo "EXAMPLE: /home/amnesia/Persistent/bitcoin-0.11.0/bin/bitcoin.conf"
   read conf
 done
@@ -59,7 +60,7 @@ if [[ "$x" = "n" || "$x" = "N" ]]; then
   exit 0
 fi
 clear
-echo -e "\n\nPLEASE ENTER THE PATH TO YOUR JOINMARKET FOLDER."
+echo -e "\n\nENTER THE PATH TO YOUR JOINMARKET FOLDER."
 echo "EXAMPLE: /home/amnesia/Persistent/joinmarket/"
 read jm
 h=$(ls "$jm" | grep -c wallet-tool.py)
@@ -71,12 +72,12 @@ until [[ "$h" = "1" ]]; do
   h=$(ls "$jm" | grep -c wallet-tool.py)
 done
 clear
-echo -e "\n\nPLEASE ENTER YOUR WALLET FILE NAME."
+echo -e "\n\nENTER YOUR WALLET FILE NAME."
 echo "EXAMPLE: mywallet.json"
 read w
 while [[ ! -e "$jm"wallets/"$wa" ]]; do
   echo -e"\n\nFILE DOES NOT EXIST!\n"
-  echo "PLEASE ENTER YOUR WALLET FILE NAME."
+  echo "ENTER YOUR WALLET FILE NAME."
   echo "EXAMPLE: mywallet.json"
   read w
 done
@@ -136,11 +137,11 @@ echo -e "\n\n"
 echo -e "$mtx"
 }
 mktx
-echo -e "\n\nPLEASE REVIEW THE INFORMATION IN THE TRANSACTION.\n"
+echo -e "\n\nREVIEW THE INFORMATION IN THE TRANSACTION.\n"
 read -p "(S)IGN TX, OR  (R)EMAKE TX? (S/R) " sr
 until [ "$sr" = "S" ]; do
 mktx
-echo -e "\n\nPLEASE REVIEW THE INFORMATION IN THE TRANSACTION.\n"
+echo -e "\n\nREVIEW THE INFORMATION IN THE TRANSACTION.\n"
 read -p "(S)IGN TX, OR  (R)EMAKE TX? (S/R) " sr
 done
 clear
@@ -148,7 +149,7 @@ mtxh=$(echo "$mtx" | tail -n 1)
 stx=$(sudo tx -f /tmp/priv $(echo -n ""$mtxh""))
 echo -e "\n\n"
 echo -e "$stx"
-echo -e "\n\nPLEASE REVIEW THE SIGNED TRANSACTION.\n"
+echo -e "\n\nREVIEW THE SIGNED TRANSACTION.\n"
 read -p "PUSH SIGNED TX NOW? (y/n)" ptx
 if [[ "$ptx" = "n" || "$ptx" = "N" ]]; then
   read -p "DESTROY TEMP FILES? (y/n) " d
