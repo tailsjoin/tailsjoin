@@ -62,7 +62,7 @@ sudo apt-get update
 echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL THE FOLLOWING DEPENDENCIES:"
 echo -e "gcc, libc6-dev, make, python-dev, python-pip\n"
 sudo apt-get install -y gcc libc6-dev make python-dev python-pip
-echo -e "\nPRESS ENTER TO FETCH LIBSODIUM SOURCE FROM:"
+echo -e "\nPRESS ENTER TO GET LIBSODIUM SOURCE FROM:"
 echo -e "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz\n"; read
 wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
 gpg --recv-keys 0x62F25B592B6F76DA
@@ -83,13 +83,20 @@ sudo torify pip install numpy --upgrade
 echo -e "\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:"
 echo -e "https://github.com/chris-belcher/joinmarket\n"; read
 git clone https://github.com/chris-belcher/joinmarket joinmarket
-echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#for clearnet\n#host = irc.cyberguerrilla.info\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = true\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#host = 6dvj6v5imhny3anf.onion\nhost = a2jutl5hpza43yog.onion\nport = 6697\n" > ../joinmarket/joinmarket.cfg
-echo -e "\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
+echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#for clearnet\n#host = irc.cyberguerrilla.info\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = true\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#host = 6dvj6v5imhny3anf.onion\nhost = a2jutl5hpza43yog.onion\nport = 6697\n" > joinmarket/joinmarket.cfg
+echo -e "\n\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
+clear
+echo -e "\n\nJOINMARKETS lib/irc.py FILE DOES AN UNPROXIED HTTP LOOKUP TO WIKIPEDIA"
+echo "IN ORDER TO GET A RANDOM NICKNAME FOR THE IRC. THIS IS NOT POSSIBLE, OR SAFE,"
+echo -e "ON TAILS.\n"
+echo "IN ORDER TO FIX THIS ISSUE WE WILL CREATE A RANDOM NICK LOCALLY USING THIS PR:"
+echo -e "\nhttps://github.com/chris-belcher/joinmarket/pull/121\n"
+read -p "PRESS ENTER TO GET THE CHANGES AND MODIFY THE lib/irc.py FILE."
+wget https://raw.githubusercontent.com/CohibAA/joinmarket-dev-cohibaa/patch-5/lib/irc.py -O joinmarket/lib/irc.py
 echo "PLEASE GO HERE TO GET INFO ON HOW TO OPERATE:"
 echo "https://github.com/chris-belcher/joinmarket/wiki"
-echo -e "PRESS ENTER TO EXIT."; read; exit 0
 echo -e "\n\nSCRIPT FINISHED.\n"
-echo "YOU CAN RUN BITCOIN BY ENTERING THE FOLDER: bitcoin-0.11.0/bin"
+echo "YOU CAN RUN BITCOIN BY ENTERING THE FOLDER: $PWD/bitcoin-0.11.0/bin"
 echo "AND DOING: ./bitcoind -conf=/path/to/bitcoin-0.11.0/bin/bitcoin.conf"
 echo -e "PROVIDED THAT YOU ENTERED YOUR DATA DIR IN THE CONFIG FILE.\n\n"
 read -p "PRESS ENTER TO LEAVE SCRIPT."
