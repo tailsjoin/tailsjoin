@@ -1,5 +1,5 @@
 # tailsjoin
-## Scripts to install JoinMarket, Bitcoin v.11, and dependencies on Tails OS.
+## Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), [Bitcoin v.11](https://bitcoin.org/en/download), and dependencies on [Tails live OS](https://tails.boum.org).
 
 ### Options for Tails.
 
