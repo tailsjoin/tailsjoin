@@ -100,13 +100,6 @@ echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc,
 echo -e "\n\nJOINMARKET CLONED, AND CONFIG SET TO USE TOR AND BITCOIN RPC."
 read -p "PRESS ENTER FOR SOME FINAL CONFIGURATIONS."
 clear
-echo -e "\n\nJOINMARKETS lib/irc.py FILE DOES AN UNPROXIED HTTP LOOKUP TO WIKIPEDIA"
-echo -e "TO GET A RANDOM NICKNAME FOR THE IRC. THIS IS NOT POSSIBLE, OR SAFE, ON TAILS.\n"
-echo "IN ORDER TO FIX THIS ISSUE WE WILL CREATE A RANDOM NICK LOCALLY USING THIS PR:"
-echo -e "\nhttps://github.com/chris-belcher/joinmarket/pull/121\n"
-read -p "PRESS ENTER TO GET THE CHANGES AND MODIFY THE lib/irc.py FILE."
-wget https://raw.githubusercontent.com/CohibAA/joinmarket-dev-cohibaa/patch-5/lib/irc.py -O joinmarket/lib/irc.py
-clear
 echo -e "\n\nJOINMARKETS lib/irc.py ONLY HAS A 1 SECOND WAIT TIME BETWEEN SENDING SIGS."
 echo "THIS CAUSES THE IRC TO KICK YOU FOR FLOODING IF YOU SEND WITH MORE THAT 5 MAKERS."
 read -p "WOULD YOU LIKE TO MODIFY THIS WAIT TIME ON LINE 98 OF lib/irc.py TO 5 SECONDS? (y/n) " m
