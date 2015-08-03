@@ -5,7 +5,7 @@ set -e
 # Tails live operating system (https://tails.boum.org), and will not work without a local bitcoin client. I may make
 # one that uses a web service too. When either a tumble session fails, or when acting as a maker one often ends up
 # with random funds spread accross random depths. This is hopefully a simple way to reallocate or move these funds.
-# nothing is ever pushed to the network until you give the "OK" at the very end of the script. So there is no worry
+# Nothing is ever pushed to the network until you give the "OK" at the very end of the script. So there is no worry
 # in testing, quiting, and testing again.
 #
 # Use at your own risk, and be aware of your own skill level. Keep a calculator handy as the script does not do math
@@ -75,7 +75,7 @@ clear
 echo -e "\n\nENTER YOUR WALLET FILE NAME."
 echo "EXAMPLE: mywallet.json"
 read w
-while [[ ! -e "$jm"wallets/"$wa" ]]; do
+while [[ ! -e "$jm"wallets/"$w" ]]; do
   echo -e"\n\nFILE DOES NOT EXIST!\n"
   echo "ENTER YOUR WALLET FILE NAME."
   echo "EXAMPLE: mywallet.json"
