@@ -140,9 +140,9 @@ mktx
 echo -e "\n\nREVIEW THE INFORMATION IN THE TRANSACTION.\n"
 read -p "(S)IGN TX, OR  (R)EMAKE TX? (S/R) " sr
 until [ "$sr" = "S" ]; do
-mktx
-echo -e "\n\nREVIEW THE INFORMATION IN THE TRANSACTION.\n"
-read -p "(S)IGN TX, OR  (R)EMAKE TX? (S/R) " sr
+  mktx
+  echo -e "\n\nREVIEW THE INFORMATION IN THE TRANSACTION.\n"
+  read -p "(S)IGN TX, OR  (R)EMAKE TX? (S/R) " sr
 done
 clear
 mtxh=$(echo "$mtx" | tail -n 1)
