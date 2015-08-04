@@ -3,9 +3,9 @@
 
 ### Options for Tails.
 
-1. Run on a minimal system without enough disk space to run bitcoin core.
+1. Run `tailsjoin.sh` on a minimal system without enough disk space to run bitcoin core.
 
-2. Run on either a system with enough disk space to hold an indexed blockchain, or a minimal system with the enough external storage to store the blockchain (60GB~)
+2. Run `tailsjoincore.sh` on either a system with enough disk space to hold an indexed blockchain, or a minimal system with the enough external storage to store the blockchain (60GB~)
 
 ---
 
