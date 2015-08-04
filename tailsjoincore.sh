@@ -100,12 +100,6 @@ echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc,
 echo -e "\n\nJOINMARKET CLONED, AND CONFIG SET TO USE TOR AND BITCOIN RPC."
 read -p "PRESS ENTER FOR SOME FINAL CONFIGURATIONS."
 clear
-echo -e "\n\nJOINMARKETS lib/irc.py ONLY HAS A 1 SECOND WAIT TIME BETWEEN SENDING SIGS."
-echo "THIS CAUSES THE IRC TO KICK YOU FOR FLOODING IF YOU SEND WITH MORE THAT 5 MAKERS."
-read -p "WOULD YOU LIKE TO MODIFY THIS WAIT TIME ON LINE 98 OF lib/irc.py TO 5 SECONDS? (y/n) " m
-if [[ "$m" = "y" || "$m" = "Y" ]]; then
-  sed -i '98s|1|5|' joinmarket/lib/irc.py
-fi
 echo "PLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE FROM THE CREATOR:"
 echo "https://github.com/chris-belcher/joinmarket/wiki"
 echo -e "\n\nSCRIPT FINISHED.\n"
