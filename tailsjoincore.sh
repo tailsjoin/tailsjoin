@@ -44,7 +44,7 @@ echo ""; read -p "PRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."
 tar -xvf bitcoin-0.11.0-linux32.tar.gz
 srm -dlrv bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
 echo ""; read -p "PRESS ENTER TO PUT SOME SANE DEFAULTS INTO A BITCOIN.CONF FOR YOU."
-if [ -e "bitcoin.conf" ]; then
+if [ -e "bitcoin-0.11.0/bin/bitcoin.conf" ]; then
   clear
   echo ""; read -p 'FILE "bitcoin.conf" EXISTS. OVERWRITE? (y/n) ' ow
   if  [[ "$ow" = "n" || "$ow" = "N" ]]; then
