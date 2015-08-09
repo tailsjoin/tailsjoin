@@ -27,7 +27,7 @@ Be aware, the script will prompt for the administrator password several times th
 After installation you will have to add `torify` to every [command](https://github.com/tailsjoin/tailsjoin/commit/0b42441277dfe77bccfefe6075cb688c0b603e4a) that does blockchain lookups because the minimal setup uses blockr.io (Coinbase):
 
     torify python wallet-tool.py <wallet_file>
-    torify python sendpayment.py -P -N 4 <amount> <destination_address>
+    torify python sendpayment.py -N 4 <amount> <destination_address>
 
 ####[Simple send payment guide in wiki.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
 ####[Guide for using Bitcoin core for added privacy not perfected yet.](https://github.com/tailsjoin/tailsjoin/wiki/tails) 
