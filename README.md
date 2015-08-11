@@ -51,7 +51,7 @@ https://reddit.com/r/joinmarket
 Twitter:
 https://twitter.com/joinmarket
 
-Donation address:
+JoinMarket Donation address:
 1AZgQZWYRteh6UyF87hwuvyWj73NvWKpL
 
 Wiki page for more detailed articles:
