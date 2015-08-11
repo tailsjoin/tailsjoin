@@ -30,7 +30,9 @@ After installation you will have to add `torify` to every [command](https://gith
     torify python sendpayment.py -N 4 <amount> <destination_address>
 
 ####[Simple send payment guide in wiki.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
-####[Guide for using Bitcoin core for added privacy not perfected yet.](https://github.com/tailsjoin/tailsjoin/wiki/tails) 
+####[Guide for using Bitcoin core for added privacy coming soon.](https://github.com/tailsjoin/tailsjoin/wiki/tails) 
+---
+####[Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion:62601/)
 ---
 
 ##JoinMarket Project Information:
