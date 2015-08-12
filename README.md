@@ -1,7 +1,7 @@
-# tailsjoin
-## Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), [Bitcoin v.11](https://bitcoin.org/en/download), and dependencies on [Tails live OS](https://tails.boum.org).
+#[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
+##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), [Bitcoin v.11](https://bitcoin.org/en/download), and dependencies on [Tails live OS](https://tails.boum.org).
 
-### Options for Tails.
+###Options for Tails.
 
 1. Run `tailsjoin.sh` on a minimal system without enough disk space to run bitcoin core.
 
@@ -9,7 +9,7 @@
 
 ---
 
-### Steps for a system with minimal disk space.
+###Steps for a system with minimal disk space.
 
 You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password no matter which script you run.
 
