@@ -70,7 +70,7 @@ echo -e "[BLOCKCHAIN]\nblockchain_source = blockr\n#options: blockr, json-rpc, r
 clear
 echo -e "\n\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
 echo -e "YOU CAN FIND THE FOLDER HERE:"
-echo $PWD | sed 's|\/tailsjoin||'
+echo $PWD | sed 's|\/tailsjoin|\/joinmarket|'
 echo -e "\n\nPLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE:"
 echo -e "https://github.com/chris-belcher/joinmarket/wiki\n\n"
 read -p "PRESS ENTER TO EXIT."
