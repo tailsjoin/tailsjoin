@@ -9,11 +9,11 @@
 
 ---
 
-###Steps for a system with minimal disk space.
+###For a minimal system follow the steps below, or use [this detailed guide.](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
 
 You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password no matter which script you run.
 
-The script is signed with my gpg key: [0x1B9184DF9E117718](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key)
+The script is signed with my gpg key: [`44C5 398E A821 BB41 A0C0  7052 1B91 84DF 9E11 7718`](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key)
 
     cd /home/amnesia/Persistent (optional)
     git clone https://github.com/tailsjoin/tailsjoin
