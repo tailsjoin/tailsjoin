@@ -11,44 +11,74 @@ if [[ "$x" = "n" || "$x" = "N" ]]; then
   exit 0
 fi
 clear
-echo -e "\n\nPRESS ENTER TO GET BITCOIN CORE AND CHECKSUMS FROM:\n"
-echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz"
-echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc "; read
-wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
-clear
-echo -e "\n\nIMPORTING KEY: 0x90C8019E36C2E964 TO CHECK SIG."
-gpg --recv-keys 01EA5486DE18A882D4C2684590C8019E36C2E964
-gpg --verify SHA256SUMS.asc
-echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
-read -p "GOOD SIG? (y/n) " x
-while [[ "$x" = "n" || "$x" = "N" ]]; do
+echo -e "\n\nYOU NOW HAVE THE OPTION OF DOWNLOADING THE STANDARD BITCOIN CORE"
+echo -e " CLIENT, OR THE BITCOIN XT CLIENT WITH SUPPORT FOR BIGGER BLOCKS.\n"
+read -p "WOULD YOU LIKE TO DOWNLOAD (C)ORE OR (X)T (c/x)? " cx
+if [[ "$cx" = "c" || "$cx" = "C" ]]; then
   clear
-  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
-  srm -drv SHA256SUMS.asc
-  wget https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+  echo -e "\n\nPRESS ENTER TO GET BITCOIN CORE AND CHECKSUMS FROM:\n"
+  echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz"
+  echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc "; read
+  wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+  clear
+  echo -e "\n\nIMPORTING KEY: 0x90C8019E36C2E964 TO CHECK SIG."
+  gpg --recv-keys 01EA5486DE18A882D4C2684590C8019E36C2E964
   gpg --verify SHA256SUMS.asc
   echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
   read -p "GOOD SIG? (y/n) " x
-done
-clear
-echo -e "\n\nCHECKING THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
-sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
-echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | shasum -c
-echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
-while [[ "$x" = "n" || "$x" = "N" ]]; do
+  while [[ "$x" = "n" || "$x" = "N" ]]; do
+    clear
+    echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+    srm -drv SHA256SUMS.asc
+    wget https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+    gpg --verify SHA256SUMS.asc
+    echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
+    read -p "GOOD SIG? (y/n) " x
+  done
   clear
-  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
-  srm -drv bitcoin-0.11.0-linux32.tar.gz
-  wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz
-  echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
+  echo -e "\n\nCHECKING THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
   sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
-  echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | shasum -c
+  echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
   echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
-done
-clear
-echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
-tar -xvf bitcoin-0.11.0-linux32.tar.gz
-srm -dlrv bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
+  while [[ "$x" = "n" || "$x" = "N" ]]; do
+    clear
+    echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+    srm -drv bitcoin-0.11.0-linux32.tar.gz
+    wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz
+    echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
+    sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
+    echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
+    echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+  done
+  clear
+  echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
+  tar -xvf bitcoin-0.11.0-linux32.tar.gz
+  srm -dlrv bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
+else
+  clear
+  echo -e "\n\nPRESS ENTER TO GET BITCOIN XT FROM:\n"
+  echo "https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz "; read
+  wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
+  clear
+  echo -e "\n\nCHECKING THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
+  sha=8705966cd735d5075e17aa03eff1b69c7c765dca5e826d8d849321db0650fc37
+  echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
+  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+  while [[ "$x" = "n" || "$x" = "N" ]]; do
+    clear
+    echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+    srm -drv bitcoin-0.11.0-linux32.tar.gz
+    wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
+    echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
+    sha=8705966cd735d5075e17aa03eff1b69c7c765dca5e826d8d849321db0650fc37
+    echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
+    echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+  done
+  clear
+  echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
+  tar -xvf bitcoin-0.11.0-linux32.tar.gz
+  srm -dlrv bitcoin-0.11.0-linux32.tar.gz
+fi
 clear
 echo -e "\n\nPRESS ENTER TO PUT THESE SETTINGS IN YOUR BITCOIN.CONF:\n"
 bitconf=$(echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nproxyrandomize=1\nserver=1\ntxindex=1\n# JoinMarket Settings\nwalletnotify=curl -sI --connect-timeout 1 http://localhost:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://localhost:62062/alertnotify?%s\n# User to input blockchain path\ndatadir=")
@@ -67,7 +97,7 @@ clear
 echo -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
 echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.0/bin/bitcoin.conf"
 # This code was lifted from Axis-Mundi README.TAILS (https://github.com/six-pack/Axis-Mundi/blob/master/README.TAILS)
-echo -e "\n\nENTER TO ALLOW CALLS TO LOCALHOST BY ADJUSTING IPTABLES USING THIS COMMAND:\n"
+echo -e "\n\nENTER PASSWORD TO ALLOW CALLS TO LOCALHOST BY ADJUSTING IPTABLES AS FOLLOWS:\n"
 echo -e "sudo iptables -I OUTPUT 2 -p tcp -s 127.0.0.1 -d 127.0.0.1 -m owner --uid-owner amnesia -j ACCEPT\n"
 sudo iptables -I OUTPUT 2 -p tcp -s 127.0.0.1 -d 127.0.0.1 -m owner --uid-owner amnesia -j ACCEPT
 clear
@@ -124,7 +154,7 @@ clear
 echo -e "\n\nPLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE FROM THE CREATOR:"
 echo "https://github.com/chris-belcher/joinmarket/wiki"
 echo -e "\nYOU CAN RUN BITCOIN BY ENTERING THE FOLDER:"
-echo " $PWD/bitcoin-0.11.0/bin"
+echo " $PWD/bitcoin-0.11.0/bin/"
 echo "AND USE THIS COMMAND:"
 echo "./bitcoind -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf"
 echo -e "\nYOU MUST NOW ENTER YOUR DATA DIR IN THE BITCOIN CONFIG FILE."
