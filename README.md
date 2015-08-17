@@ -13,7 +13,7 @@
 
 You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password no matter which script you run.
 
-The script is signed with my gpg key: [`44C5 398E A821 BB41 A0C0  7052 1B91 84DF 9E11 7718`](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key)
+All scripts are signed with my gpg key: [`44C5 398E A821 BB41 A0C0  7052 1B91 84DF 9E11 7718`](https://github.com/tailsjoin/tailsjoin/wiki/GnuPG-Key)
 
     cd /home/amnesia/Persistent (optional)
     git clone https://github.com/tailsjoin/tailsjoin
@@ -30,12 +30,16 @@ After installation you will have to add [`torify` to every command](https://gith
     torify python sendpayment.py -N 4 <amount> <destination_address>
 
 ---
-#### * [Simple send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
-#### * [Detailed install and send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
-#### * [Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion:62601/)
+
+####[Simple send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
+
+####[Detailed install and send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
+
+####[Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion:62601/)
+
 ---
 
-#### * Tailsjoin Donation Address: `1A2NeDroe7rzw1SWtqZJm3Los6HJMV1frb`
+####Tailsjoin Donation Address: `1A2NeDroe7rzw1SWtqZJm3Los6HJMV1frb`
 
 ---
 
