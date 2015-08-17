@@ -5,7 +5,7 @@
 
 1. Run `tailsjoin.sh` on a minimal system without enough disk space to store an indexed blockchain.
 
-2. Run `tailsjoincore.sh` on either a system with enough disk space to hold an indexed blockchain, or a minimal system with enough external storage to store an indexed blockchain (60GB~)
+2. Run `tailsjoin-fullnode.sh` on either a system with enough disk space to hold an indexed blockchain, or a minimal system with enough external storage to store an indexed blockchain (60GB~)
 
 ---
 
