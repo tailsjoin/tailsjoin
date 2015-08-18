@@ -1,11 +1,11 @@
 #!/bin/bash
 set -e
 clear
-echo -e "\n\nYOU ARE CURRENTLY IN THE FOLDER $(echo "$PWD")"
+echo -e "\n\nYOU ARE CURRENTLY IN THE FOLDER $PWD"
 read -p "IS THIS WHERE YOU WANT TO DOWNLOAD BITCOIN? (y/n) " x
 if [[ "$x" = "n" || "$x" = "N" ]]; then
   clear
-  echo -e "\n\nPLEASE MOVE THE SCRIPT tailsjoincore.sh TO THE FOLDER WHERE"
+  echo -e "\n\nPLEASE MOVE THE SCRIPT tailsjoin-fullnode.sh TO THE FOLDER WHERE"
   echo -e "BITCOIN WILL GO AND RUN AGAIN.\n\n"
   read -p "PRESS ENTER TO EXIT. "
   exit 0
