@@ -18,7 +18,7 @@ if  [[ $(echo "$PWD" | grep -c Persistent) = "0" && -e /home/amnesia/Persistent 
     clear
   fi
 fi
-echo -e "\n\nTHIS SCRIPT WILL INSTALL JOINMARKET AND ITS DEPENDENCIES FOR TAILS OS.\n\n"
+echo -e "\n\nTHIS SCRIPT WILL INSTALL JOINMARKET AND ITS DEPENDENCIES FOR A MINIMAL TAILS OS WITH NO LOCAL BLOCKCHAIN STORAGE, USING BLOCKR.IO FOR BLOCKCHAIN LOOKUPS (ALWAYS OVER TOR).\n\n"
 # Update
 echo -e "ENTER PASSWORD AT PROMPT TO UPDATE SOURCES.\n"
 sudo apt-get update
@@ -62,16 +62,25 @@ echo -e "\n\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
 sudo torify pip install numpy --upgrade
 # Clone into joinmarket
 clear
+# This code for allowing amnesia access to the python modules lifted from the Axis-Mundi README.TAILS (https://github.com/six-pack/Axis-Mundi/blob/master/README.TAILS)
+echo -e "\n\nENTER PASSWORD TO ALLOW USER amnesia TO USE PYTHON MODULES WITH COMMAND:\n"
+echo -e "sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages\n"
+sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages
+clear
 echo -e "\n\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:\n"
 read -p "https://github.com/chris-belcher/joinmarket"
 git clone https://github.com/chris-belcher/joinmarket ../joinmarket
-# Set config for tor and blockr. Tails users should consider using an external hdd with bitcoin core.
+# Set config for tor and blockr. Tails users should consider using external media with a stored blockchain for added privacy and the tailsjoincore.sh script.
 echo -e "[BLOCKCHAIN]\nblockchain_source = blockr\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = bitcoin-cli\n\n[MESSAGING]\n#for clearnet\n#host = irc.cyberguerrilla.info\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = false\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#host = 6dvj6v5imhny3anf.onion\nhost = a2jutl5hpza43yog.onion\n#socks5 = true\nport = 6697\n" > ../joinmarket/joinmarket.cfg
 clear
-echo -e "\n\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR."
-echo -e "YOU CAN FIND THE FOLDER HERE:"
-echo $PWD | sed 's|\/tailsjoin|\/joinmarket|'
-echo -e "\n\nPLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE:"
-echo -e "https://github.com/chris-belcher/joinmarket/wiki\n\n"
-read -p "PRESS ENTER TO EXIT."
+echo -e "\n\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR!"
+echo -e "\n\nYOU CAN FIND THE FOLDER HERE:"
+echo $PWD | sed 's|tailsjoin|joinmarket|'
+echo -e "\nHERE IS A DETAILED BEGINNERS GUIDE:"
+echo "https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide"
+echo -e "\nHERE IS A HIDDEN SERVICE ORDERBOOK WATCHER:"
+echo "http://ruc47yiosooolrzw.onion:62601/"
+echo -e "\nHERE IS THE JOINMARKET OFFICIAL GITHUB:"
+echo -e "https://github.com/chris-belcher/joinmarket\n\n"
+read -p "PRESS ENTER TO EXIT. "
 exit 0
