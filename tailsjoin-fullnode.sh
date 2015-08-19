@@ -81,7 +81,7 @@ else
 fi
 clear
 echo -e "\n\nPRESS ENTER TO PUT THESE SETTINGS IN YOUR BITCOIN.CONF:\n"
-bitconf=$(echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nproxyrandomize=1\nserver=1\ntxindex=1\n# JoinMarket Settings\nwalletnotify=curl -sI --connect-timeout 1 http://localhost:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://localhost:62062/alertnotify?%s\n# User to input blockchain path\ndatadir=")
+bitconf=$(echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nlisten=0\nproxyrandomize=1\nserver=1\ntxindex=1\n# JoinMarket Settings\nwalletnotify=curl -sI --connect-timeout 1 http://localhost:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://localhost:62062/alertnotify?%s\n# User to input blockchain path\ndatadir=")
 echo "$bitconf"
 read
 if [ -e "bitcoin-0.11.0/bin/bitcoin.conf" ]; then
