@@ -58,11 +58,6 @@ echo -e "\n\nLIBSODIUM SUCCESSFULLY BULIT. ENTER PASSWORD TO INSTALL.\n"
 rm -rf libsodium-1.0.3/
 # Clone into joinmarket
 clear
-# This code for allowing amnesia access to the python modules lifted from the Axis-Mundi README.TAILS (https://github.com/six-pack/Axis-Mundi/blob/master/README.TAILS)
-echo -e "\n\nENTER PASSWORD TO ALLOW USER amnesia TO USE PYTHON MODULES WITH COMMAND:\n"
-echo -e "sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages\n"
-sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages
-clear
 echo -e "\n\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:\n"
 read -p "https://github.com/chris-belcher/joinmarket"
 git clone https://github.com/chris-belcher/joinmarket ../joinmarket
@@ -72,11 +67,14 @@ clear
 echo -e "\n\nJOINMARKET INSTALLED, AND CONFIG SET TO USE TOR!"
 echo -e "\n\nYOU CAN FIND THE FOLDER HERE:"
 echo $PWD | sed 's|tailsjoin|joinmarket|'
-echo -e "\nHERE IS A DETAILED BEGINNERS GUIDE:"
+echo -e "\nDETAILED BEGINNERS GUIDE:"
 echo "https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide"
-echo -e "\nHERE IS A HIDDEN SERVICE ORDERBOOK WATCHER:"
+echo -e "\nHIDDEN SERVICE ORDERBOOK WATCHER:"
 echo "http://ruc47yiosooolrzw.onion:62601/"
-echo -e "\nHERE IS THE JOINMARKET OFFICIAL GITHUB:"
+echo -e "\nJOINMARKET OFFICIAL GITHUB:"
 echo -e "https://github.com/chris-belcher/joinmarket\n\n"
 read -p "PRESS ENTER TO EXIT. "
+<<<<<<< HEAD
 exit 0
+=======
+>>>>>>> fd704220a09cf8a388656b5b8a2f6199668f93c6
