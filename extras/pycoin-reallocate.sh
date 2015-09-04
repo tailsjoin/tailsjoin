@@ -17,10 +17,14 @@ if [[ ! -e pycoin/pycoin/scripts/tx.py ]]; then
   read -p "DO YOU NEED TO CLONE AND INSTALL PYCOIN? (y/n) " ip
   if [[ "$ip" = "y" || "$ip" = "Y" ]]; then
     echo -e "\n\nPRESS ENTER TO GET PYCOIN FROM:"
-    read -p "https://github.com/richardkiss/pycoin"
+    read -p "https://github.com/richardkiss/pycoin "
     git clone https://github.com/richardkiss/pycoin
-    echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL PYCOIN."
+    echo -e "\nETER PASSWORD TO INSTALL python-setuptools."
+    sudo apt-get install python-setuptools
+    echo -e "\nENTER PASSWORD TO INSTALL PYCOIN."
     ( cd pycoin/ && sudo python setup.py install )
+    echo -e "\nENTER PASSWORD TO FIX PERMISSIONS ON PYCOIN"
+    sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages/*
   fi
 fi
 clear
@@ -47,7 +51,7 @@ while [[ ! -e "$conf" ]]; do
 done
 clear
 echo -e "\n\nPRESS ENTER TO TEST THAT BITCOIN CORE IS RUNNING,"
-read -p "AND THAT WE CAN MAKE CALLS TO IT."
+read -p "AND THAT WE CAN MAKE CALLS TO IT. "
 ( cd "$btc" && ./bitcoin-cli -conf="$conf" getinfo )
 echo -e "\n\nTHAT SHOULD HAVE SHOWN THE INFO ABOUT YOUR RUNNING BITCOIN CORE.\n"
 read -p "WERE YOU SUCCESSFULLY SHOWN THE INFO? (y/n) " x
@@ -56,7 +60,7 @@ if [[ "$x" = "n" || "$x" = "N" ]]; then
   echo -e "\n\nSOMETHING IS WRONG WITH THE WAY YOU HAVE BITCOIN CORE SET UP,"
   echo "OR YOU SIMPLY DIDN'T START THE BITCOIN SERVER. CHECK TO MAKE SURE"
   echo -e "THAT YOU HAVE THE DATA DIRECTORY STATED IN YOUR CONFIG FILE.\n"
-  read -p "PRESS ENTER TO LEAVE THE SCRIPT AND FIX THINGS."
+  read -p "PRESS ENTER TO LEAVE THE SCRIPT AND FIX THINGS. "
   exit 0
 fi
 clear
@@ -87,7 +91,7 @@ echo -e "WE WILL MAKE THREE TEMP FILES DURING THIS PROCESS:"
 echo "/tmp/priv, /tmp/mktx, and /tmp/send"
 echo -e "\nALL WILL BE DELETED IF YOU FINISH THE SCRIPT. HOWEVER"
 echo -e "IF YOU NEED TO QUIT IN THE MIDDLE, YOU SHOULD DELETE THESE YOURSELF.\n"
-read -p "PRESS ENTER TO START REALLOCATING FUNDS."
+read -p "PRESS ENTER TO START REALLOCATING FUNDS. "
 clear
 echo -e "\n\nPLEASE BE PATIENT AFTER ENTERING YOUR WALLET PASSPHRASE"
 echo -e "WHILE YOUR ADDRESSES ARE CHECKED FOR FUNDS.\n"
@@ -131,8 +135,8 @@ sends=$(cat /tmp/send | xargs)
 clear
 echo -e "\n\nTRANSACTION SO FAR:\n"
 echo -e "tx "$utxos" "$sends"\n"
-read -p "PRESS ENTER TO CREATE THE TRANSACTION. ENTER ADMIN PASS AT PROMPT."
-mtx=$(sudo tx $(echo -n ""$utxos" "$sends""))
+read -p "PRESS ENTER TO CREATE THE TRANSACTION. ENTER ADMIN PASS AT PROMPT. "
+mtx=$(tx $(echo -n ""$utxos" "$sends""))
 echo -e "\n\n"
 echo "$mtx"
 }
@@ -146,11 +150,11 @@ until [ "$sr" = "S" ]; do
 done
 clear
 mtxh=$(echo "$mtx" | tail -n 1)
-stx=$(sudo tx -f /tmp/priv $(echo -n ""$mtxh""))
+stx=$(tx -f /tmp/priv $(echo -n ""$mtxh""))
 echo -e "\n\n"
 echo "$stx"
 echo -e "\n\nREVIEW THE SIGNED TRANSACTION.\n"
-read -p "PUSH SIGNED TX NOW? (y/n)" ptx
+read -p "PUSH SIGNED TX NOW? (y/n) " ptx
 if [[ "$ptx" = "n" || "$ptx" = "N" ]]; then
   read -p "DESTROY TEMP FILES? (y/n) " d
   if  [[ "$d" = "y" ]]; then
