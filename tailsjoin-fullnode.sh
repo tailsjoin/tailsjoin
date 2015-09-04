@@ -19,7 +19,7 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
   echo -e "\n\nPRESS ENTER TO GET BITCOIN CORE AND CHECKSUMS FROM:\n"
   echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz"
   echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc "; read
-  wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz -O https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
   clear
   echo -e "\n\nIMPORTING KEY: 0x90C8019E36C2E964 TO CHECK SIG."
   gpg --recv-keys 01EA5486DE18A882D4C2684590C8019E36C2E964
@@ -30,7 +30,7 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
     clear
     echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
     srm -drv SHA256SUMS.asc
-    wget https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+    curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
     gpg --verify SHA256SUMS.asc
     echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
     read -p "GOOD SIG? (y/n) " x
@@ -44,7 +44,7 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
     clear
     echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
     srm -drv bitcoin-0.11.0-linux32.tar.gz
-    wget https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz
+    curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz
     echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
     sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
     echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
@@ -53,12 +53,12 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
   clear
   echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
   tar -xvf bitcoin-0.11.0-linux32.tar.gz
-  srm -dlrv bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
+  rm -rf bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
 else
   clear
   echo -e "\n\nPRESS ENTER TO GET BITCOIN XT FROM:\n"
   echo "https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz "; read
-  wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
+  curl -x socks5://127.0.0.1:9050 -# -L -O https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
   clear
   echo -e "\n\nCHECKING THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
   sha=8705966cd735d5075e17aa03eff1b69c7c765dca5e826d8d849321db0650fc37
@@ -66,9 +66,9 @@ else
   echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
   while [[ "$x" = "n" || "$x" = "N" ]]; do
     clear
-    echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+    echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN. "
     srm -drv bitcoin-0.11.0-linux32.tar.gz
-    wget https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
+    curl -x socks5://127.0.0.1:9050 -# -L -O https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
     echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
     sha=8705966cd735d5075e17aa03eff1b69c7c765dca5e826d8d849321db0650fc37
     echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
@@ -77,7 +77,7 @@ else
   clear
   echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
   tar -xvf bitcoin-0.11.0-linux32.tar.gz
-  srm -dlrv bitcoin-0.11.0-linux32.tar.gz
+  rm -rf bitcoin-0.11.0-linux32.tar.gz
 fi
 clear
 echo -e "\n\nPRESS ENTER TO PUT THESE SETTINGS IN YOUR BITCOIN.CONF:\n"
@@ -106,47 +106,51 @@ echo -e "\nENTER PASSWORD AT PROMPT TO UPDATE SOURCES.\n"
 sudo apt-get update
 clear
 echo -e "\n\nENTER PASSWORD AT PROMPT TO INSTALL THE FOLLOWING DEPENDENCIES:\n"
-echo -e "gcc, libc6-dev, make, python-dev, python-pip\n"
-sudo apt-get install -y gcc libc6-dev make python-dev python-pip
+echo -e "gcc, libc6-dev, make\n"
+sudo apt-get install -y gcc libc6-dev make
 clear
-echo -e "\n\nPRESS ENTER TO GET LIBSODIUM AND VERIFY SOURCE FROM:\n"
-echo -e "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz\n"; read
-wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
+echo -e "\n\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:\n"
+read -p "https://github.com/chris-belcher/joinmarket "
+git clone https://github.com/chris-belcher/joinmarket ../joinmarket
+# Fetch libsodium and sig, import key, and verify.
+clear
+echo -e "\n\nPRESS ENTER TO GET SIGNING KEYS AND VERIFY LIBSODIUM SOURCE FROM:\n"
+read -p "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz "
 gpg --recv-keys 54A2B8892CC3D6A597B92B6C210627AABA709FE1
 echo "54A2B8892CC3D6A597B92B6C210627AABA709FE1:6" | gpg --import-ownertrust -
+curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
 gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
-echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
+echo -e "\n\nPLEASE REVIEW SIGNATURE.\n"
 read -p "GOOD SIG? (y/n) " x
 while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
-  echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
+  echo -e "\n\n"
+  read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN. "
   srm -drv libsodium*
-  wget http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
+  curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
   gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
   echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
   read -p "GOOD SIG? (y/n) " x
 done
+# Build libsodium, install, and delete tar files
 tar xf libsodium-1.0.3.tar.gz
 rm -rf libsodium-1.0.3.tar.gz*
-( cd libsodium-1.0.3/ && ./configure )
-( cd libsodium-1.0.3/ && make )
-clear
-echo -e "\nENTER PASSWORD AT PROMPT TO INSTALL LIBSODIUM AND DELETE USELESS FILES.\n"
-( cd libsodium-1.0.3/ && sudo make install )
+if [[ $(echo "$PWD" | grep -c Persistent) = "1" ]]; then
+  clear
+  echo -e "\n\nPRESS ENTER TO BUILD AND INSTALL LIBSODIUM IN A WAY THAT WILL SURVIVE REBOOTS.\n"
+  read
+  mkdir ../joinmarket/libsodium
+  ( cd libsodium-1.0.3/ && ./configure --prefix=$(echo "$PWD") && make && make install )
+  mv libsodium-1.0.3/lib/libsodium.* ../joinmarket/libsodium/
+  sed -i "s|\/usr\/local\/lib|$(echo "$PWD" | sed 's|tailsjoin|joinmarket\/libsodium|')|" ../joinmarket/lib/libnacl/__init__.py
+else
+  ( cd libsodium-1.0.3/ && ./configure && make )
+  clear
+  echo -e "\n\nLIBSODIUM SUCCESSFULLY BULIT. ENTER PASSWORD TO INSTALL.\n"
+  ( cd libsodium-1.0.3/ && sudo make install )
+fi
 rm -rf libsodium-1.0.3/
-clear
-echo -e "\nENTER PASSWORD AT PROMPT TO UPGRADE NUMPY TO VERSION 1.9.2\n"
-sudo torify pip install numpy --upgrade
-clear
-# This code for allowing amnesia access to the python modules lifted from the Axis-Mundi README.TAILS (https://github.com/six-pack/Axis-Mundi/blob/master/README.TAILS)
-echo -e "\n\nENTER PASSWORD TO ALLOW USER amnesia TO USE PYTHON MODULES WITH COMMAND:\n"
-echo -e "sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages\n"
-sudo chmod -R o+r,o+X /usr/local/lib/python2.7/dist-packages
-clear
-echo -e "\n\nPRESS ENTER TO CLONE INTO JOINMARKET VIA:\n"
-echo -e "https://github.com/chris-belcher/joinmarket\n"; read
-git clone https://github.com/chris-belcher/joinmarket joinmarket
-echo -e "[BLOCKCHAIN]\nblockchain_source = json-rpc\n#options: blockr, json-rpc, regtest\n#before using json-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node\nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\nchannel = joinmarket-pit\nusessl = true\n#for tor\nsocks5 = true\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\nhost = a2jutl5hpza43yog.onion\nport = 6697\n" > joinmarket/joinmarket.cfg
+echo -e "[BLOCKCHAIN]\nblockchain_source = blockr\n#options: blockr, bitcoin-rpc, json-rpc, regtest\n#for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node \nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#host = irc.cyberguerrilla.org\nchannel = joinmarket-pit\nport = 6697\nusessl = true\nsocks5 = false\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#for tor\nhost = a2jutl5hpza43yog.onion" > ../joinmarket/joinmarket.cfg
 clear
 echo -e "\n\nJOINMARKET CLONED, AND CONFIG SET TO USE TOR AND BITCOIN RPC!\n"
 read -p "PRESS ENTER FOR SOME FINAL NOTES. "
