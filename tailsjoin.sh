@@ -10,7 +10,7 @@ fi
 if  [[ $(echo "$PWD" | grep -c Persistent) = "0" && -e /home/amnesia/Persistent ]]; then
   echo -e "\n\nIT SEEMS YOU HAVE PERSISTENCE ENABLED,\nBUT YOU'RE IN THE FOLDER:"
   echo "$PWD"
-  echo -e "\nIF YOU MOVE THE tailsjoin FOLDER TO /home/amnesia/Persistence/"
+  echo -e "\nIF YOU MOVE THE tailsjoin FOLDER TO /home/amnesia/Persistent/"
   echo -e "YOUR INSTALL WILL SURVIVE REBOOTS, OTHERWISE IT WILL NOT.\n\n"
   read -p "QUIT NOW TO MOVE? (y/n) " q
   if  [[ "$q" = "y" || "$q" = "Y" ]]; then
