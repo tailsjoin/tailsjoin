@@ -82,7 +82,8 @@ echo $PWD | sed 's|tailsjoin|joinmarket|'
 echo -e "\nDETAILED BEGINNERS GUIDE:"
 echo "https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide"
 echo -e "\nHIDDEN SERVICE ORDERBOOK WATCHER:"
-echo "http://ruc47yiosooolrzw.onion:62601/"
+echo "http://ruc47yiosooolrzw.onion"
 echo -e "\nJOINMARKET OFFICIAL GITHUB:"
 echo -e "https://github.com/chris-belcher/joinmarket\n\n"
 read -p "PRESS ENTER TO EXIT. "
+exit 0
