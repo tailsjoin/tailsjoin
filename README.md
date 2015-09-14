@@ -55,4 +55,4 @@ Twitter: https://twitter.com/joinmarket
 
 JoinMarket Donation address: `1AZgQZWYRteh6UyF87hwuvyWj73NvWKpL`
 
-[JOINMARKET OFFICIAL WIKI FOR DETAILED ARTICLES/GUIDES](https://github.com/chris-belcher/joinmarket/wiki)
+####[JOINMARKET OFFICIAL WIKI FOR DETAILED ARTICLES/GUIDES](https://github.com/chris-belcher/joinmarket/wiki)
