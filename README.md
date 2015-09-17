@@ -35,7 +35,7 @@ After installation you will have to add [`torify` to every command](https://gith
 
 ####[Detailed install and send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
 
-####[Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion:62601/)
+####[Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion/)
 
 ---
 
