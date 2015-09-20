@@ -39,7 +39,7 @@ After installation you will have to add [`torify` to every command](https://gith
 
 ---
 
-####Tailsjoin Donation Address: `1A2NeDroe7rzw1SWtqZJm3Los6HJMV1frb`
+####Tailsjoin Donation Address: `168EyD1PRasDoXF4ZbAbnSJRSRpeJYMDhP`
 
 ---
 
