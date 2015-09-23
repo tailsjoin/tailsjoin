@@ -112,6 +112,7 @@ BUILDING AND INSTALLING LIBSODIUM TO SURVIVE REBOOTS...
   ( cd libsodium-1.0.3/ && ./configure --prefix=$(pwd) && make && make install )
   mv libsodium-1.0.3/lib/libsodium.* ../joinmarket/libsodium/
   sed -i "s|\/usr\/local\/lib|$(pwd | sed 's|tailsjoin|joinmarket\/libsodium|')|" ../joinmarket/lib/libnacl/__init__.py
+  ( cd ../joinmarket && git commit -a --allow-empty-message -m "" )
 else
   echo "
 BUILDING, LIBSODIUM...
