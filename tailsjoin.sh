@@ -51,7 +51,7 @@ clear
 
 # Install dependencies for building libsodium.
 echo "
-ENTER PASSWORD TO INSTALL: 'gcc', 'libc6-dev', 'make'
+ENTER PASSWORD TO INSTALL: 'gcc', 'libc6-dev', and 'make'
 (NEEDED TO BUILD LIBSODIUM CRYPTO LIBRARY)
 "
 sudo apt-get install -y gcc libc6-dev make
@@ -63,7 +63,7 @@ git clone https://github.com/chris-belcher/joinmarket ../joinmarket
 clear
 
 
-# Get libsodium and sig and import key.
+# Get libsodium, sig, and import key.
 echo "
 DOWNLOADING LIBSODIUM SOURCE AND SIGNING KEY...
 "
@@ -86,7 +86,7 @@ read -p "IS IT A GOOD SIG? (y/n) " x
 while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
   echo "
-SECURELY DELETING FILES AND DOWNLOADING AGAIN.
+SECURELY DELETING FILES AND DOWNLOADING AGAIN...
 "
   srm -drv libsodium*
   curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
@@ -129,8 +129,8 @@ clear
 # Set JoinMarket config for tor and blockr.
 echo "[BLOCKCHAIN]
 blockchain_source = blockr 
-#options: blockr, bitcoin-rpc, json-rpc, regtest
-#for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
+# blockchain_source options: blockr, bitcoin-rpc, json-rpc, regtest
+# for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
 network = mainnet
 rpc_host = localhost
 rpc_port = 8332
@@ -145,12 +145,12 @@ usessl = true
 socks5 = false
 socks5_host = localhost
 socks5_port = 9050
-#for tor
+# for tor
 host = a2jutl5hpza43yog.onion
-#maker_timeout_sec = 60
+maker_timeout_sec = 60
 
 [POLICY]
-#for dust sweeping, try merge_algorithm = gradual
+# merge_algorithm options: greedy, default, gradual
 merge_algorithm = default" > ../joinmarket/joinmarket.cfg
 
 
