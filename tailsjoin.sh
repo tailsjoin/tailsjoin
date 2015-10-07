@@ -147,7 +147,9 @@ socks5 = false
 socks5_host = localhost
 socks5_port = 9050
 # for tor
-host = a2jutl5hpza43yog.onion
+host = 6dvj6v5imhny3anf.onion
+# The host below is an alternative if the above isn't working.
+#host = a2jutl5hpza43yog.onion
 maker_timeout_sec = 60
 
 [POLICY]

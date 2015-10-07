@@ -80,8 +80,10 @@ else
   rm -rf bitcoin-0.11.0-linux32.tar.gz
 fi
 clear
+rpcu=$(pwgen -ncsB 35 1)
+rpcp=$(pwgen -ncsB 75 1)
 echo -e "\n\nPRESS ENTER TO PUT THESE SETTINGS IN YOUR BITCOIN.CONF:\n"
-bitconf=$(echo -e "daemon=1\nrpcuser=$(pwgen -ncsB 35 1)\nrpcpassword=$(pwgen -ncsB 75 1)\nproxy=127.0.0.1:9050\nlisten=0\nproxyrandomize=1\nserver=1\ntxindex=1\n# JoinMarket Settings\nwalletnotify=curl -sI --connect-timeout 1 http://localhost:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://localhost:62062/alertnotify?%s\n# User to input blockchain path\ndatadir=")
+bitconf=$(echo -e "daemon=1\nrpcuser="$rpcu"\nrpcpassword="$rpcp"\nproxy=127.0.0.1:9050\nlisten=0\nproxyrandomize=1\nserver=1\n\n# JoinMarket Settings\nwalletnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62062/alertnotify?%s\n# User to input blockchain path\ndatadir=")
 echo "$bitconf"
 read
 if [ -e "bitcoin-0.11.0/bin/bitcoin.conf" ]; then
@@ -150,7 +152,33 @@ else
   ( cd libsodium-1.0.3/ && sudo make install )
 fi
 rm -rf libsodium-1.0.3/
-echo -e "[BLOCKCHAIN]\nblockchain_source = blockr\n#options: blockr, bitcoin-rpc, json-rpc, regtest\n#for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node \nnetwork = mainnet\nbitcoin_cli_cmd = $PWD/bitcoin-0.11.0/bin/bitcoin-cli -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf\n\n[MESSAGING]\n#host = irc.cyberguerrilla.org\nchannel = joinmarket-pit\nport = 6697\nusessl = true\nsocks5 = false\nsocks5_host = 127.0.0.1\nsocks5_port = 9050\n#for tor\nhost = a2jutl5hpza43yog.onion" > ../joinmarket/joinmarket.cfg
+echo "[BLOCKCHAIN]
+blockchain_source = blockr 
+# blockchain_source options: blockr, bitcoin-rpc, json-rpc, regtest
+# for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
+network = mainnet
+rpc_host = 127.0.0.1
+rpc_port = 8332
+rpc_user = $rpcu
+rpc_password = $rpcp 
+
+[MESSAGING]
+#host = irc.cyberguerrilla.org
+channel = joinmarket-pit
+port = 6697
+usessl = true
+socks5 = false
+socks5_host = 127.0.0.1
+socks5_port = 9050
+# for tor
+host = 6dvj6v5imhny3anf.onion
+# The host below is an alternative if the above isn't working.
+#host = a2jutl5hpza43yog.onion
+maker_timeout_sec = 60
+
+[POLICY]
+# merge_algorithm options: greedy, default, gradual
+merge_algorithm = default" > ../joinmarket/joinmarket.cfg
 clear
 echo -e "\n\nJOINMARKET CLONED, AND CONFIG SET TO USE TOR AND BITCOIN RPC!\n"
 read -p "PRESS ENTER FOR SOME FINAL NOTES. "
