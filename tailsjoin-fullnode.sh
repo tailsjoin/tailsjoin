@@ -167,7 +167,7 @@ rpc_password = $rpcp
 channel = joinmarket-pit
 port = 6697
 usessl = true
-socks5 = false
+socks5 = true
 socks5_host = 127.0.0.1
 socks5_port = 9050
 # for tor
