@@ -153,7 +153,7 @@ else
 fi
 rm -rf libsodium-1.0.3/
 echo "[BLOCKCHAIN]
-blockchain_source = blockchain-rpc
+blockchain_source = bitcoin-rpc
 # blockchain_source options: blockr, bitcoin-rpc, json-rpc, regtest
 # for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
 network = mainnet
