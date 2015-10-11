@@ -153,14 +153,14 @@ else
 fi
 rm -rf libsodium-1.0.3/
 echo "[BLOCKCHAIN]
-blockchain_source = blockr 
+blockchain_source = blockchain-rpc
 # blockchain_source options: blockr, bitcoin-rpc, json-rpc, regtest
 # for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
 network = mainnet
 rpc_host = 127.0.0.1
 rpc_port = 8332
 rpc_user = $rpcu
-rpc_password = $rpcp 
+rpc_password = $rpcp
 
 [MESSAGING]
 #host = irc.cyberguerrilla.org
