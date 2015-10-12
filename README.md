@@ -1,11 +1,11 @@
 #[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
 ##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), dependencies, and/or  [Bitcoin](https://bitcoin.org/en/download)/[BitcoinXT](https://github.com/bitcoinxt/bitcoinxt) on the [Tails live OS](https://tails.boum.org).
 
-###Options for Tails.
+###Options for TAILS:
 
 1. Run `tailsjoin.sh` on a minimal system without enough disk space to store an indexed blockchain.
 
-2. Run `tailsjoin-fullnode.sh` on either a system with enough disk space to hold an indexed blockchain, or a minimal system with enough external storage to store an indexed blockchain (60GB~)
+2. Run `tailsjoin-fullnode.sh` on either a system with enough disk space to hold an indexed blockchain, or a minimal system with enough external storage to store an indexed blockchain (50GB~)
 
 ---
 
