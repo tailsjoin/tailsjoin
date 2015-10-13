@@ -57,27 +57,27 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
 else
   clear
   echo -e "\n\nPRESS ENTER TO GET BITCOIN XT FROM:\n"
-  echo "https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz "; read
-  curl -x socks5://127.0.0.1:9050 -# -L -O https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
+  echo "https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11C/bitcoin-xt-0.11.0-C-linux32.tar.gz "; read
+  curl -x socks5://127.0.0.1:9050 -# -L -O https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11C/bitcoin-xt-0.11.0-C-linux32.tar.gz
   clear
   echo -e "\n\nCHECKING THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
-  sha=8705966cd735d5075e17aa03eff1b69c7c765dca5e826d8d849321db0650fc37
-  echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
-  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+  sha=5dd32a6f30d7fd05b271908a53a2c9db7baa629b9299e40fd17a9009d59c9348
+  echo ""; echo ""$sha"  bitcoin-xt-0.11.0-C-linux32.tar.gz" | sha256sum -c
+  echo""; read -p 'DID THAT SHOW: "bitcoin-xt-0.11.0-C-linux32.tar.gz: OK" ? (y/n) ' x
   while [[ "$x" = "n" || "$x" = "N" ]]; do
     clear
     echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN. "
-    srm -drv bitcoin-0.11.0-linux32.tar.gz
-    curl -x socks5://127.0.0.1:9050 -# -L -O https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11A/bitcoin-0.11.0-linux32.tar.gz
+    srm -drv bitcoin-xt-0.11.0-C-linux32.tar.gz
+    curl -x socks5://127.0.0.1:9050 -# -L -O https://github.com/bitcoinxt/bitcoinxt/releases/download/v0.11C/bitcoin-xt-0.11.0-C-linux32.tar.gz
     echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
-    sha=8705966cd735d5075e17aa03eff1b69c7c765dca5e826d8d849321db0650fc37
-    echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
-    echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+    sha=5dd32a6f30d7fd05b271908a53a2c9db7baa629b9299e40fd17a9009d59c9348
+    echo ""; echo ""$sha"  bitcoin-xt-0.11.0-C-linux32.tar.gz" | sha256sum -c
+    echo""; read -p 'DID THAT SHOW: "bitcoin-xt-0.11.0-C-linux32.tar.gz: OK" ? (y/n) ' x
   done
   clear
   echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
-  tar -xvf bitcoin-0.11.0-linux32.tar.gz
-  rm -rf bitcoin-0.11.0-linux32.tar.gz
+  tar -xvf bitcoin*.tar.gz
+  rm -rf bitcoin*.tar.gz
 fi
 clear
 rpcu=$(pwgen -ncsB 35 1)
