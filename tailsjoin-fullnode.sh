@@ -17,9 +17,9 @@ read -p "WOULD YOU LIKE TO DOWNLOAD (C)ORE OR (X)T (c/x)? " cx
 if [[ "$cx" = "c" || "$cx" = "C" ]]; then
   clear
   echo -e "\n\nPRESS ENTER TO GET BITCOIN CORE AND CHECKSUMS FROM:\n"
-  echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz"
-  echo "https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc "; read
-  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz -O https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+  echo "https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1-linux32.tar.gz"
+  echo "https://bitcoin.org/bin/bitcoin-core-0.11.1/SHA256SUMS.asc "; read
+  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1-linux32.tar.gz -O https://bitcoin.org/bin/bitcoin-core-0.11.1/SHA256SUMS.asc
   clear
   echo -e "\n\nIMPORTING KEY: 0x90C8019E36C2E964 TO CHECK SIG."
   gpg --recv-keys 01EA5486DE18A882D4C2684590C8019E36C2E964
@@ -30,7 +30,7 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
     clear
     echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
     srm -drv SHA256SUMS.asc
-    curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.0/SHA256SUMS.asc
+    curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.1/SHA256SUMS.asc
     gpg --verify SHA256SUMS.asc
     echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
     read -p "GOOD SIG? (y/n) " x
@@ -38,22 +38,22 @@ if [[ "$cx" = "c" || "$cx" = "C" ]]; then
   clear
   echo -e "\n\nCHECKING THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
   sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
-  echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
-  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+  echo ""; echo ""$sha"  bitcoin-0.11.1-linux32.tar.gz" | sha256sum -c
+  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.1-linux32.tar.gz: OK" ? (y/n) ' x
   while [[ "$x" = "n" || "$x" = "N" ]]; do
     clear
     echo -e "\n\n"; read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN."
-    srm -drv bitcoin-0.11.0-linux32.tar.gz
-    curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.0/bitcoin-0.11.0-linux32.tar.gz
+    srm -drv bitcoin*.tar.gz
+    curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1-linux32.tar.gz
     echo ""; read -p "PRESS ENTER TO CHECK THE SHA256 SUM OF DOWNLOADED BITCOIN CLIENT."
     sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
-    echo ""; echo ""$sha"  bitcoin-0.11.0-linux32.tar.gz" | sha256sum -c
-    echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.0-linux32.tar.gz: OK" ? (y/n) ' x
+    echo ""; echo ""$sha"  bitcoin-0.11.1-linux32.tar.gz" | sha256sum -c
+    echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.1-linux32.tar.gz: OK" ? (y/n) ' x
   done
   clear
   echo -e "\n\nPRESS ENTER TO EXTRACT BITCOIN AND DELETE USELESS FILES."; read
-  tar -xvf bitcoin-0.11.0-linux32.tar.gz
-  rm -rf bitcoin-0.11.0-linux32.tar.gz SHA256SUMS.asc
+  tar -xvf bitcoin*.tar.gz
+  rm -rf bitcoin*.tar.gz SHA256SUMS.asc
 else
   clear
   echo -e "\n\nPRESS ENTER TO GET BITCOIN XT FROM:\n"
