@@ -94,7 +94,7 @@ if [ -e "bitcoin-0.11.0/bin/bitcoin.conf" ]; then
     exit 0
   fi
 fi
-echo "$bitconf" > bitcoin-0.11.0/bin/bitcoin.conf
+echo "$bitconf" > bitcoin-0.11.1/bin/bitcoin.conf
 clear
 echo -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
 echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.0/bin/bitcoin.conf"
@@ -186,9 +186,9 @@ clear
 echo -e "\n\nPLEASE GO HERE TO GET DETAILED INFO ON HOW TO OPERATE FROM THE CREATOR:"
 echo "https://github.com/chris-belcher/joinmarket/wiki"
 echo -e "\nYOU CAN RUN BITCOIN BY ENTERING THE FOLDER:"
-echo " $PWD/bitcoin-0.11.0/bin/"
+echo " $PWD/bitcoin-0.11.1/bin/"
 echo "AND USE THIS COMMAND:"
-echo "./bitcoind -conf=$PWD/bitcoin-0.11.0/bin/bitcoin.conf"
+echo "./bitcoind -conf=$PWD/bitcoin-0.11.1/bin/bitcoin.conf"
 echo -e "\nYOU MUST NOW ENTER YOUR DATA DIR IN THE BITCOIN CONFIG FILE."
 echo -e "EXAMPLE ENTRY:\ndatadir=/media/mounted_device/.bitcoin/\n\n"
 read -p "PRESS ENTER TO LEAVE SCRIPT. "
