@@ -69,7 +69,7 @@ DOWNLOADING LIBSODIUM SOURCE AND SIGNING KEY...
 "
 gpg --recv-keys 54A2B8892CC3D6A597B92B6C210627AABA709FE1
 echo "54A2B8892CC3D6A597B92B6C210627AABA709FE1:6" | gpg --import-ownertrust -
-curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
+curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz.sig
 clear
 
 
@@ -77,7 +77,7 @@ clear
 echo "
 VERIFYING THE DOWNLOAD...
 "
-gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+gpg --verify libsodium-1.0.4.tar.gz.sig libsodium-1.0.4.tar.gz
 echo "
 PLEASE REVIEW THE TEXT ABOVE.
 IT WILL EITHER SAY GOOD SIG OR BAD SIG.
@@ -89,8 +89,8 @@ while [[ "$x" = "n" || "$x" = "N" ]]; do
 SECURELY DELETING FILES AND DOWNLOADING AGAIN...
 "
   srm -drv libsodium*
-  curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
-  gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+  curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz.sig
+  gpg --verify libsodium-1.0.4.tar.gz.sig libsodium-1.0.4.tar.gz
   echo "
 PLEASE REVIEW THE TEXT ABOVE.
 IT WILL EITHER SAY GOOD SIG OR BAD SIG.
@@ -101,35 +101,35 @@ clear
 
 
 # Build and install libsodium.
-tar xf libsodium-1.0.3.tar.gz
-rm -rf libsodium-1.0.3.tar.gz*
+tar xf libsodium*.tar.gz
+rm -rf libsodium*.tar.gz*
 
 if [[ $(pwd | grep -c Persistent) = "1" ]]; then
   echo "
 BUILDING AND INSTALLING LIBSODIUM TO SURVIVE REBOOTS...
 "
   mkdir ../joinmarket/libsodium
-  ( cd libsodium-1.0.3/ && ./configure --prefix=$(pwd) && make && make install )
-  mv libsodium-1.0.3/lib/libsodium.* ../joinmarket/libsodium/
+  ( cd libsodium-1.0.4/ && ./configure --prefix=$(pwd) && make && make install )
+  mv libsodium-1.0.4/lib/libsodium.* ../joinmarket/libsodium/
   sed -i "s|\/usr\/local\/lib|$(pwd | sed 's|tailsjoin|joinmarket\/libsodium|')|" ../joinmarket/lib/libnacl/__init__.py
-  ( cd ../joinmarket && git commit -a --allow-empty-message -m "" )
+  ( cd ../joinmarket && git commit -a -m "Tailsjoin survive reboots" )
 else
   echo "
 BUILDING, LIBSODIUM...
 "
-  ( cd libsodium-1.0.3/ && ./configure && make )
+  ( cd libsodium-1.0.4/ && ./configure && make )
   echo "
 LIBSODIUM SUCCESSFULLY BULIT. ENTER PASSWORD TO INSTALL.
 "
-  ( cd libsodium-1.0.3/ && sudo make install )
+  ( cd libsodium-1.0.4/ && sudo make install )
 fi
-rm -rf libsodium-1.0.3/
+rm -rf libsodium*
 clear
 
 
 # Set JoinMarket config for tor and blockr.
 echo "[BLOCKCHAIN]
-blockchain_source = blockr 
+blockchain_source = blockr
 # blockchain_source options: blockr, bitcoin-rpc, json-rpc, regtest
 # for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
 network = mainnet
@@ -162,8 +162,8 @@ echo "
           JOINMARKET SUCCESSFULLY INSTALLED AND CONFIGURED!
 
           IF YOU HAVE PERSISTENCE ENABLED, AND YOU RAN THIS
-       SCRIPT FROM WITHIN THE FOLDER: /home/amnesia/Persistent
-        THEN YOUR INSTALL WILL SURVIVE REBOOTS AND YOU NEVER
+       SCRIPT FROM WITHIN THE FOLDER: /home/amnesia/Persistent,
+         THEN YOUR INSTALL WILL SURVIVE REBOOTS AND YOU NEVER
                    HAVE TO RUN THIS SCRIPT AGAIN.
 
 

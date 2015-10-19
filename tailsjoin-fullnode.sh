@@ -86,7 +86,7 @@ echo -e "\n\nPRESS ENTER TO PUT THESE SETTINGS IN YOUR BITCOIN.CONF:\n"
 bitconf=$(echo -e "daemon=1\nrpcuser="$rpcu"\nrpcpassword="$rpcp"\nproxy=127.0.0.1:9050\nlisten=0\nproxyrandomize=1\nserver=1\n\n# JoinMarket Settings\nwalletnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62602/walletnotify?%s\nalertnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62062/alertnotify?%s\n# User to input blockchain path\ndatadir=")
 echo "$bitconf"
 read
-if [ -e "bitcoin-0.11.0/bin/bitcoin.conf" ]; then
+if [ -e "bitcoin-0.11.1/bin/bitcoin.conf" ]; then
   clear
   echo ""; read -p 'FILE "bitcoin.conf" EXISTS. OVERWRITE? (y/n) ' ow
   if  [[ "$ow" = "n" || "$ow" = "N" ]]; then
@@ -97,7 +97,7 @@ fi
 echo "$bitconf" > bitcoin-0.11.1/bin/bitcoin.conf
 clear
 echo -e "\nYOU WILL NEED TO ENTER YOUR DATA DIRECTORY IN THE CONFIG."
-echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.0/bin/bitcoin.conf"
+echo -e "CONFIG FILE IS LOCATED AT: bitcoin-0.11.1/bin/bitcoin.conf"
 # This code was lifted from Axis-Mundi README.TAILS (https://github.com/six-pack/Axis-Mundi/blob/master/README.TAILS)
 echo -e "\n\nENTER PASSWORD TO ALLOW CALLS TO LOCALHOST BY ADJUSTING IPTABLES AS FOLLOWS:\n"
 echo -e "sudo iptables -I OUTPUT 2 -p tcp -s 127.0.0.1 -d 127.0.0.1 -m owner --uid-owner amnesia -j ACCEPT\n"
@@ -117,11 +117,11 @@ git clone https://github.com/chris-belcher/joinmarket ../joinmarket
 # Fetch libsodium and sig, import key, and verify.
 clear
 echo -e "\n\nPRESS ENTER TO GET SIGNING KEYS AND VERIFY LIBSODIUM SOURCE FROM:\n"
-read -p "http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz "
+read -p "http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz "
 gpg --recv-keys 54A2B8892CC3D6A597B92B6C210627AABA709FE1
 echo "54A2B8892CC3D6A597B92B6C210627AABA709FE1:6" | gpg --import-ownertrust -
-curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
-gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz.sig
+gpg --verify libsodium-1.0.4.tar.gz.sig libsodium-1.0.4.tar.gz
 echo -e "\n\nPLEASE REVIEW SIGNATURE.\n"
 read -p "GOOD SIG? (y/n) " x
 while [[ "$x" = "n" || "$x" = "N" ]]; do
@@ -129,33 +129,33 @@ while [[ "$x" = "n" || "$x" = "N" ]]; do
   echo -e "\n\n"
   read -p "PRESS ENTER TO DELETE FILES AND GET AGAIN. "
   srm -drv libsodium*
-  curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.3.tar.gz.sig
-  gpg --verify libsodium-1.0.3.tar.gz.sig libsodium-1.0.3.tar.gz
+  curl -x socks5://127.0.0.1:9050 -# -L -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz -O http://download.libsodium.org/libsodium/releases/libsodium-1.0.4.tar.gz.sig
+  gpg --verify libsodium-1.0.4.tar.gz.sig libsodium-1.0.4.tar.gz
   echo -e "\n\nPLEASE REVIEW THE SIG TO MAKE SURE IT IS GOOD.\n"
   read -p "GOOD SIG? (y/n) " x
 done
 # Build libsodium, install, and delete tar files
-tar xf libsodium-1.0.3.tar.gz
-rm -rf libsodium-1.0.3.tar.gz*
+tar xf libsodium*.tar.gz
+rm -rf libsodium*.tar.gz*
 if [[ $(echo "$PWD" | grep -c Persistent) = "1" ]]; then
   clear
   echo -e "\n\nPRESS ENTER TO BUILD AND INSTALL LIBSODIUM IN A WAY THAT WILL SURVIVE REBOOTS.\n"
   read
   mkdir ../joinmarket/libsodium
-  ( cd libsodium-1.0.3/ && ./configure --prefix=$(echo "$PWD") && make && make install )
-  mv libsodium-1.0.3/lib/libsodium.* ../joinmarket/libsodium/
+  ( cd libsodium-1.0.4/ && ./configure --prefix=$(echo "$PWD") && make && make install )
+  mv libsodium-1.0.4/lib/libsodium.* ../joinmarket/libsodium/
   sed -i "s|\/usr\/local\/lib|$(echo "$PWD" | sed 's|tailsjoin|joinmarket\/libsodium|')|" ../joinmarket/lib/libnacl/__init__.py
 else
-  ( cd libsodium-1.0.3/ && ./configure && make )
+  ( cd libsodium-1.0.4/ && ./configure && make )
   clear
   echo -e "\n\nLIBSODIUM SUCCESSFULLY BULIT. ENTER PASSWORD TO INSTALL.\n"
-  ( cd libsodium-1.0.3/ && sudo make install )
+  ( cd libsodium-1.0.4/ && sudo make install )
 fi
-rm -rf libsodium-1.0.3/
+rm -rf libsodium-1.0.4/
 echo "[BLOCKCHAIN]
 blockchain_source = bitcoin-rpc
 # blockchain_source options: blockr, bitcoin-rpc, json-rpc, regtest
-# for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node 
+# for instructions on bitcoin-rpc read https://github.com/chris-belcher/joinmarket/wiki/Running-JoinMarket-with-Bitcoin-Core-full-node
 network = mainnet
 rpc_host = 127.0.0.1
 rpc_port = 8332
