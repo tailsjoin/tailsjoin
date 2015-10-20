@@ -1,5 +1,5 @@
 #[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
-##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), dependencies, and/or  [Bitcoin](https://bitcoin.org/en/download)/[BitcoinXT](https://github.com/bitcoinxt/bitcoinxt) on the [Tails live OS](https://tails.boum.org).
+##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), dependencies, and [Bitcoin Core](https://bitcoin.org/en/download) on the [TAILS live OS](https://tails.boum.org).
 
 ###Options for TAILS:
 
