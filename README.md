@@ -41,10 +41,6 @@ Examples:
 
 ---
 
-####Tailsjoin Donation Address: `1PWoMjXuoygVmBS15K87nf24MYDuDRemqj`
-
----
-
 ##Official JoinMarket Project Information:
 
 IRC: `#joinMarket` on irc.freenode.net https://webchat.freenode.net/?channels=%23joinmarket
