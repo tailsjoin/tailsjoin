@@ -109,7 +109,7 @@ if [ -e "../bitcoin-0.11.1/bin/bitcoin.conf" ]; then
   clear
   echo ""; read -p 'FILE "bitcoin.conf" EXISTS. OVERWRITE? (y/n) ' ow
   if  [[ "$ow" = "n" || "$ow" = "N" ]]; then
-    echo ""; read -p "PRESS ENTER TO EXIT SCRIPT"
+    echo ""; read -p "PRESS ENTER TO EXIT SCRIPT."
     exit 0
   fi
 fi
@@ -281,7 +281,7 @@ $(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin\/bitcoin.conf|')
     TO RUN BITCOIN, ENTER THE FOLDER:
     $(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin|')
     AND DO:
-    ./bitcoind conf=$(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin\/bitcoin.conf|')
+    ./bitcoind -conf=$(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin\/bitcoin.conf|')
 "
 read -p "PRESS ENTER TO EXIT SCRIPT. "
 exit 0
