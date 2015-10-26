@@ -1,6 +1,10 @@
 #[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
 ##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), dependencies, and [Bitcoin Core](https://bitcoin.org/en/download) on the [TAILS live OS](https://tails.boum.org).
 
+#WARNING: THE JOINMARKET DEV, CHRIS BELCHER, HAS DECIDED TO ADD A DONATION TO THE TUMBLER WITHOUT PROPERLY NOTIFYING USERS EITHER VIA SOCIAL MEANS OR IN THE CODE (IT'S ONLY SUBTLY MENTIONED IN THE HELP MENU FROM TUMBLER.PY). THE DEFAULT SETTING IS 1.5% BEING DONATED TO JOINMARKET DEV WHEN YOU RUN THE TUMBLER. TO CHANGE THE AMOUNT RUN THE TUMBLER LIKE THIS:
+
+    torify python tumbler.py --donateamount=0 <the rest of your options>
+
 ###Options for TAILS:
 
 1. Run `tailsjoin.sh` on a minimal system without enough disk space to store the blockchain. This will use blockr.io (Coinbase) to check address balances and confirmed transactions. This is over Tor, of course, but still not optimal for privacy.
