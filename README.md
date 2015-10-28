@@ -1,7 +1,7 @@
 #[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
 ##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), [libsodium](https://download.libsodium.org/doc/), and [Bitcoin Core](https://bitcoin.org/en/download) on the [Tails OS](https://tails.boum.org).
 
-##WARNING: THE JOINMARKET DEV, CHRIS BELCHER, HAS DECIDED TO [ADD A DONATION](https://github.com/chris-belcher/joinmarket/commit/d74a02d6017a1c0006f2171f7e4456e525b5c4df) TO THE TUMBLER WITHOUT AND [REFUSES](https://reddit.com/r/joinmarket/comments/3q27ys/funding_development_of_joinmarket/) TO PROPERLY ALERT USERS. (IT'S ONLY [SUBTLY MENTIONED IN THE HELP MENU](https://github.com/chris-belcher/joinmarket/pull/272) FROM TUMBLER.PY). THE DEFAULT SETTING IS 1.5% BEING DONATED TO JOINMARKET DEV WHEN YOU RUN THE TUMBLER. 
+##WARNING: THE JOINMARKET DEV, CHRIS BELCHER, HAS DECIDED TO [ADD A DONATION](https://github.com/chris-belcher/joinmarket/commit/d74a02d6017a1c0006f2171f7e4456e525b5c4df) TO THE TUMBLER AND [REFUSES](https://reddit.com/r/joinmarket/comments/3q27ys/funding_development_of_joinmarket/) TO PROPERLY ALERT USERS. (IT'S ONLY [SUBTLY MENTIONED IN THE HELP MENU](https://github.com/chris-belcher/joinmarket/pull/272) FROM TUMBLER.PY). THE DEFAULT SETTING IS 1.5% BEING DONATED TO JOINMARKET DEV WHEN YOU RUN THE TUMBLER. 
 
 ##TO OPT-OUT YOU *MUST* RUN THE TUMBLER LIKE THIS:
 
