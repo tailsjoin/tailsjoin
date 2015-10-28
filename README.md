@@ -1,7 +1,9 @@
 #[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
-##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), dependencies, and [Bitcoin Core](https://bitcoin.org/en/download) on the [TAILS live OS](https://tails.boum.org).
+##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), dependencies, and [Bitcoin Core](https://bitcoin.org/en/download) on the [Tails OS](https://tails.boum.org).
 
-#WARNING: THE JOINMARKET DEV, CHRIS BELCHER, HAS DECIDED TO ADD A DONATION TO THE TUMBLER WITHOUT PROPERLY NOTIFYING USERS EITHER VIA SOCIAL MEANS OR IN THE CODE (IT'S ONLY SUBTLY MENTIONED IN THE HELP MENU FROM TUMBLER.PY). THE DEFAULT SETTING IS 1.5% BEING DONATED TO JOINMARKET DEV WHEN YOU RUN THE TUMBLER. TO CHANGE THE AMOUNT RUN THE TUMBLER LIKE THIS:
+##WARNING: THE JOINMARKET DEV, CHRIS BELCHER, HAS DECIDED TO [ADD A DONATION](https://github.com/chris-belcher/joinmarket/commit/d74a02d6017a1c0006f2171f7e4456e525b5c4df) TO THE TUMBLER WITHOUT AND [REFUSES](https://reddit.com/r/joinmarket/comments/3q27ys/funding_development_of_joinmarket/) TO PROPERLY ALERT USERS. (IT'S ONLY [SUBTLY MENTIONED IN THE HELP MENU](https://github.com/chris-belcher/joinmarket/pull/272) FROM TUMBLER.PY). THE DEFAULT SETTING IS 1.5% BEING DONATED TO JOINMARKET DEV WHEN YOU RUN THE TUMBLER. 
+
+##TO OPT-OUT YOU *MUST* RUN THE TUMBLER LIKE THIS:
 
     torify python tumbler.py --donateamount=0 <the rest of your options>
 
@@ -58,3 +60,9 @@ Twitter: https://twitter.com/joinmarket
 JoinMarket Donation address: `1AZgQZWYRteh6UyF87hwuvyWj73NvWKpL`
 
 ####[JOINMARKET OFFICIAL WIKI FOR DETAILED ARTICLES/GUIDES](https://github.com/chris-belcher/joinmarket/wiki)
+
+---
+
+The tailsjoin project has absolutely no affiliation with the Tails operating system, and no longer has any with JoinMarket. Although I have contributed to JoinMarket I no longer agree with the lead devs policy of hidden taxation. Therefore my morals keep me from supporting such a project. 
+
+Tailsjoin is resources for end users to easily and safely anonymize their Bitcoin transactions using existing tools. If you appreciate my work here please teach someone you know how to use these tools or make someone smile.
