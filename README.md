@@ -1,12 +1,6 @@
 #[tailsjoin](https://github.com/tailsjoin/tailsjoin/wiki)
 ##Scripts to install [JoinMarket](https://github.com/chris-belcher/joinmarket), [libsodium](https://download.libsodium.org/doc/), and [Bitcoin Core](https://bitcoin.org/en/download) on the [Tails OS](https://tails.boum.org).
 
-##WARNING: THE JOINMARKET DEV, CHRIS BELCHER, HAS DECIDED TO [ADD A DONATION](https://github.com/chris-belcher/joinmarket/commit/d74a02d6017a1c0006f2171f7e4456e525b5c4df) TO THE TUMBLER AND [REFUSES](https://reddit.com/r/joinmarket/comments/3q27ys/funding_development_of_joinmarket/) TO PROPERLY ALERT USERS. (IT'S ONLY [SUBTLY MENTIONED IN THE HELP MENU](https://github.com/chris-belcher/joinmarket/pull/272) FROM TUMBLER.PY). THE DEFAULT SETTING IS 1.5% BEING DONATED TO JOINMARKET DEV WHEN YOU RUN THE TUMBLER. 
-
-##TO OPT-OUT YOU *MUST* RUN THE TUMBLER LIKE THIS:
-
-    torify python tumbler.py --donateamount=0 <the rest of your options>
-
 ###Options for TAILS:
 
 1. Run `tailsjoin.sh` on a minimal system without enough disk space to store the blockchain. This will use blockr.io (Coinbase) to check address balances and confirmed transactions. This is over Tor, of course, but still not optimal for privacy.
@@ -47,6 +41,10 @@ Examples:
 
 ---
 
+###Tailsjoin donation address: `17SidXk5PTGeVgfGg1DC2a2ryduJ3ajtad`
+
+---
+
 ##Official JoinMarket Project Information:
 
 IRC: `#joinMarket` on irc.freenode.net https://webchat.freenode.net/?channels=%23joinmarket
@@ -63,6 +61,14 @@ JoinMarket Donation address: `1AZgQZWYRteh6UyF87hwuvyWj73NvWKpL`
 
 ---
 
-The tailsjoin project has absolutely no affiliation with the Tails operating system, and no longer has any with JoinMarket. Although I have contributed to JoinMarket I no longer agree with the lead devs policy of hidden taxation. Therefore my morals keep me from supporting such a project. 
+###Consider donating to JoinMarket development when using the tumbler. 
 
-Tailsjoin is resources for end users to easily and safely anonymize their Bitcoin transactions using existing tools. If you appreciate my work here please teach someone you know how to use these tools or make someone smile.
+###To opt-in, run the tumbler like this (with `x.x` being your donation percent):
+
+    torify python tumbler.py --donateamount=x.x
+    
+---
+
+The tailsjoin project has absolutely no affiliation with the Tails operating system.
+
+These are simply resources for end users to easily and safely anonymize their Bitcoin transactions using existing tools. Pull requests are always appreciated.
