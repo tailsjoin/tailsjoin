@@ -41,7 +41,7 @@ Examples:
 
 ---
 
-###Tailsjoin donation address: `17SidXk5PTGeVgfGg1DC2a2ryduJ3ajtad`
+####Tailsjoin donation address: `17SidXk5PTGeVgfGg1DC2a2ryduJ3ajtad`
 
 ---
 
@@ -61,9 +61,9 @@ JoinMarket Donation address: `1AZgQZWYRteh6UyF87hwuvyWj73NvWKpL`
 
 ---
 
-###Consider donating to JoinMarket development when using the tumbler. 
+####Consider donating to JoinMarket development when using the tumbler. 
 
-###To opt-in, run the tumbler like this (with `x.x` being your donation percent):
+#####To opt-in, run the tumbler like this (with `x.x` being your donation percent):
 
     torify python tumbler.py --donateamount=x.x
     
