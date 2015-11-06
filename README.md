@@ -3,13 +3,13 @@
 
 ###Options for TAILS:
 
-1. Run `tailsjoin.sh` on a minimal system without enough disk space to store the blockchain. This will use blockr.io (Coinbase) to check address balances and confirmed transactions. This is over Tor, of course, but still not optimal for privacy.
+1. Run `tailsjoin.sh` on a minimal system without enough disk space to store the blockchain. This will use blockr.io (Coinbase) to check address balances and confirmed transactions. This is over Tor, of course, but still not optimal for privacy. [Detailed Guide Minimal](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
 
-2. Run `tailsjoin-fullnode.sh` on either a system with enough disk space to hold the blockchain, or a minimal system with enough external storage to store the blockchain (50GB~). This is the suggested method for privacy and true control. 
+2. Run `tailsjoin-fullnode.sh` on either a system with enough disk space to hold the blockchain, or a minimal system with enough external storage to store the blockchain (50GB~). This is the suggested method for privacy and true control. [Detailed Guide Full Node](https://tailsjoin.github.io/guides/install_guide.html#withbitcoin)
 
 ---
 
-###For a minimal system follow the steps below, or use the [detailed guide] (https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide) with pictures.
+###For a minimal system follow the steps below, or use the guides in the wiki.
 
 You must start Tails with "More options" setting in the beginning (Persistence is optional) and set an administrator password no matter which script you run.
 
@@ -33,11 +33,11 @@ Examples:
 
 ---
 
-####[Simple send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Send-Payment-Guide)
-
 ####[Detailed install and send payment guide.](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
 
 ####[Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion/)
+
+####[tailsjoin.github.io](https://tailsjoin.github.io) (guides, under construction)
 
 ---
 
