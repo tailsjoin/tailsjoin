@@ -3,7 +3,7 @@
 
 ###Options for TAILS:
 
-1. Run `tailsjoin.sh` on a minimal system without enough disk space to store the blockchain. This will use blockr.io (Coinbase) to check address balances and confirmed transactions. This is over Tor, of course, but still not optimal for privacy. [Detailed Guide Minimal](https://github.com/tailsjoin/tailsjoin/wiki/Detailed-Minimal-Setup-Guide)
+1. Run `tailsjoin.sh` on a minimal system without enough disk space to store the blockchain. This will use blockr.io (Coinbase) to check address balances and confirmed transactions. This is over Tor, of course, but still not optimal for privacy. [Detailed Guide Minimal](https://tailsjoin.github.io/guides/install_guide.html#withoutbitcoin)
 
 2. Run `tailsjoin-fullnode.sh` on either a system with enough disk space to hold the blockchain, or a minimal system with enough external storage to store the blockchain (50GB~). This is the suggested method for privacy and true control. [Detailed Guide Full Node](https://tailsjoin.github.io/guides/install_guide.html#withbitcoin)
 
