@@ -37,7 +37,7 @@ Examples:
 
 ####[Orderbook Watcher Hidden Service](http://ruc47yiosooolrzw.onion/)
 
-####[tailsjoin.github.io](https://tailsjoin.github.io) (guides, under construction)
+####[tailsjoin.github.io](https://tailsjoin.github.io) (guides and stuff, under construction)
 
 ---
 
