@@ -128,7 +128,7 @@ server=1
 
 # For JoinMarket
 walletnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62602/walletnotify?%s
-alertnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62062/alertnotify?%s
+alertnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62602/alertnotify?%s
 
 # User must uncomment and input path to blockchain files
 #datadir=" > ../bitcoin-0.11.1/bin/bitcoin.conf
