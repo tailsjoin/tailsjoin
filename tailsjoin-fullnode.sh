@@ -47,7 +47,7 @@ fi
 echo "
 GETTING BITCOIN CORE, CHECKSUM, AND SIGNING KEYS...
 "
-curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1-linux32.tar.gz -O https://bitcoin.org/bin/bitcoin-core-0.11.1/SHA256SUMS.asc
+curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2-linux32.tar.gz -O https://bitcoin.org/bin/bitcoin-core-0.11.2/SHA256SUMS.asc
 gpg --recv-keys 01EA5486DE18A882D4C2684590C8019E36C2E964
 echo "01EA5486DE18A882D4C2684590C8019E36C2E964:6" | gpg --import-ownertrust -
 clear
@@ -66,7 +66,7 @@ while [[ "$x" = "n" || "$x" = "N" ]]; do
 SECURELY DELETING FILES AND DOWNLOADING AGAIN...
 "
   srm -drv SHA256SUMS.asc
-  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.1/SHA256SUMS.asc
+  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.2/SHA256SUMS.asc
   clear
   echo "
 VERIFYING CHECKSUMS...
@@ -83,29 +83,29 @@ echo "
 VERIFYING CHECKSUM OF BITCOIN CORE...
 "
 sha=$(grep linux32.tar.gz SHA256SUMS.asc | cut -b -64)
-echo ""; echo ""$sha"  bitcoin-0.11.1-linux32.tar.gz" | sha256sum -c
-echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.1-linux32.tar.gz: OK" ? (y/n) ' x
+echo ""; echo ""$sha"  bitcoin-0.11.2-linux32.tar.gz" | sha256sum -c
+echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.2-linux32.tar.gz: OK" ? (y/n) ' x
 while [[ "$x" = "n" || "$x" = "N" ]]; do
   clear
   echo "
 SECURELY DELETING FILES AND DOWNLOADING AGAIN...
 "
   srm -drv bitcoin*.tar.gz
-  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.1/bitcoin-0.11.1-linux32.tar.gz
-  echo ""; echo ""$sha"  bitcoin-0.11.1-linux32.tar.gz" | sha256sum -c
-  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.1-linux32.tar.gz: OK" ? (y/n) ' x
+  curl -x socks5://127.0.0.1:9050 -# -L -O https://bitcoin.org/bin/bitcoin-core-0.11.2/bitcoin-0.11.2-linux32.tar.gz
+  echo ""; echo ""$sha"  bitcoin-0.11.2-linux32.tar.gz" | sha256sum -c
+  echo""; read -p 'DID THAT SHOW: "bitcoin-0.11.2-linux32.tar.gz: OK" ? (y/n) ' x
 done
 echo "
 EXTRACTING BITCOIN CORE, DELETING USELESS FILES...
 "
 tar xvf bitcoin*.tar.gz
 rm -rf bitcoin*.tar.gz SHA256SUMS.asc
-mv bitcoin-0.11.1/ ..
+mv bitcoin-0.11.2/ ..
 clear
 
 
 # Check for bitcoin.conf
-if [ -e "../bitcoin-0.11.1/bin/bitcoin.conf" ]; then
+if [ -e "../bitcoin-0.11.2/bin/bitcoin.conf" ]; then
   clear
   echo ""; read -p 'FILE "bitcoin.conf" EXISTS. OVERWRITE? (y/n) ' ow
   if  [[ "$ow" = "n" || "$ow" = "N" ]]; then
@@ -131,7 +131,7 @@ walletnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62602/walletnotify?%s
 alertnotify=curl -sI --connect-timeout 1 http://127.0.0.1:62602/alertnotify?%s
 
 # User must uncomment and input path to blockchain files
-#datadir=" > ../bitcoin-0.11.1/bin/bitcoin.conf
+#datadir=" > ../bitcoin-0.11.2/bin/bitcoin.conf
 
 
 # Fix iptables for RPC calls from amnesia.
@@ -271,17 +271,17 @@ YOUR JOINMARKET FOLDER LOCATION:
 $(pwd | sed 's|tailsjoin|joinmarket|')
 
 YOUR BITCOIN FOLDER LOCATION:
-$(pwd | sed 's|tailsjoin|bitcoin-0.11.1|')
+$(pwd | sed 's|tailsjoin|bitcoin-0.11.2|')
 
 YOUR BITCOIN.CONF LOCATION:
-$(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin\/bitcoin.conf|')
+$(pwd | sed 's|tailsjoin|bitcoin-0.11.2\/bin\/bitcoin.conf|')
 
     YOU MUST NOW ENTER YOUR DATA DIRECTORY (BLOCKCHAIN FILES)
     INTO YOUR BITCOIN.CONF OR BITCOIN WILL START FROM SCRATCH.
     TO RUN BITCOIN, ENTER THE FOLDER:
-    $(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin|')
+    $(pwd | sed 's|tailsjoin|bitcoin-0.11.2\/bin|')
     AND DO:
-    ./bitcoind -conf=$(pwd | sed 's|tailsjoin|bitcoin-0.11.1\/bin\/bitcoin.conf|')
+    ./bitcoind -conf=$(pwd | sed 's|tailsjoin|bitcoin-0.11.2\/bin\/bitcoin.conf|')
 "
 read -p "PRESS ENTER TO EXIT SCRIPT. "
 exit 0
